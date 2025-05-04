@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+body{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* Add dark mode styles for the date picker */
+.dark-calendar {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+.dark-calendar .react-datepicker__month-text {
+    color: #fff !important;
+}
+
+.dark-calendar .react-datepicker__month-text:hover {
+    background-color: #374151 !important;
+}
+
+.dark-calendar .react-datepicker__month-text--selected {
+    background-color: #3b82f6 !important;
+}
+
+.dark-calendar .react-datepicker__header {
+    background-color: #111827 !important;
+    border-color: #374151 !important;
+}
+
+.dark-calendar .react-datepicker__current-month {
+    color: #fff !important;
+}
+
+.dark-calendar .react-datepicker__navigation-icon::before {
+    border-color: #fff !important;
+}
+
+/* RTL specific styles */
+[dir="rtl"] {
+    text-align: right;
+}
+
+/* Adjust margins and paddings for RTL */
+[dir="rtl"] .mr-3 {
+    margin-right: 0;
+    margin-left: 0.75rem;
+}
+
+[dir="rtl"] .ml-3 {
+    margin-left: 0;
+    margin-right: 0.75rem;
+}
+
+/* Adjust flexbox direction if needed */
+[dir="rtl"] .flex-row {
+    flex-direction: row-reverse;
+}
+
+/* Adjust text alignment in inputs and textareas */
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+    text-align: right;
+}
+
+
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Add fadeUp utility class */
+.animate-fadeUp {
+    animation: fadeUp 0.5s ease-out forwards;
+    -webkit-animation: fadeUp 0.5s ease-out forwards;
+}
+
+/* Add fadeIn utility class */
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+

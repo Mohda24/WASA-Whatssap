@@ -1,0 +1,180 @@
+{
+    "navigation": {
+        "title": "WASA",
+        "home": "الرئيسية",
+        "qrScanner": "الحساب المتصل",
+        "mediaUpload": "رفع الوسائط",
+        "excelImport": "الأرقام المستبعدة",
+        "phoneNumbers": "السجل",
+        "logout": "تسجيل الخروج",
+        "logoutModal": {
+            "title": "تأكيد تسجيل الخروج",
+            "message": "هل أنت متأكد أنك تريد تسجيل الخروج؟ سيؤدي هذا إلى قطع اتصال جلسة WhatsApp.",
+            "cancel": "إلغاء",
+            "confirm": "تسجيل الخروج"
+        },
+        "resetDatabase": "إعادة تعيين  "
+    },
+    "home": {
+        "title": "نظرة عامة على لوحة التحكم",
+        "quickActions": "إجراءات سريعة",
+        "stats": {
+            "dailyMessages": "الرسائل اليومية",
+            "conversionRate": "معدل التحويل",
+            "trafficVolume": "حجم الزيارات"
+        },
+        "features": {
+            "qrScanner": {
+                "title": "ماسح QR",
+                "description": "ربط حساب الواتساب الخاص بك"
+            },
+            "mediaUpload": {
+                "title": "رفع الوسائط",
+                "description": "رفع الصور والصوت والرسائل"
+            },
+            "excelImport": {
+                "title": "استيراد Excel",
+                "description": "استيراد البيانات من ملفات Excel"
+            }
+        }
+    },
+    "qrScanner": {
+        "title": "اتصال واتساب",
+        "connected": {
+            "title": "تم الاتصال بواتساب بنجاح!",
+            "description": "يمكنك الآن إرسال الرسائل والوسائط"
+        },
+        "scanning": {
+            "title": "مسح رمز QR باستخدام واتساب",
+            "description": "افتح واتساب على هاتفك وامسح رمز QR هذا للاتصال"
+        },
+        "waiting": {
+            "checking": "جارٍ التحقق من حالة واتساب...",
+            "qrCode": "في انتظار رمز QR..."
+        }
+    },
+    "phoneNumbers": {
+        "title": "فرز حسب التاريخ",
+        "filters": {
+            "startDate": "تاريخ البداية",
+            "endDate": "تاريخ النهاية",
+            "selectMonth": "اختر الشهر",
+            "from": "من",
+            "to": "إلى"
+        },
+        "export": "تصدير",
+        "table": {
+            "id": "المعرف",
+            "phone": "الهاتف",
+            "addedDate": "تاريخ الإضافة"
+        },
+        "pagination": {
+            "previous": "السابق",
+            "next": "التالي",
+            "page": "Page {{current}} sur {{total}}"
+        },
+        "deleteConfirmation": {
+            "title": "تأكيد الحذف",
+            "message": "هل أنت متأكد أنك تريد حذف {{count}} رقم(أرقام)؟"
+        },
+        "deleteSelected": "حذف"
+    },
+    "upload": {
+        "images": {
+            "title": "الصور",
+            "dropzone": "قم بإسقاط الصور هنا أو انقر للتحديد"
+        },
+        "audio": {
+            "title": "الملفات الصوتية",
+            "dropzone": "قم بإسقاط الملفات الصوتية هنا أو انقر للتحديد"
+        },
+        "videos": {
+            "title": "الفيديوهات",
+            "dropzone": "قم بإسقاط ملفات الفيديو هنا أو انقر للتحديد"
+        },
+        "documents": {
+            "title": "المستندات",
+            "dropzone": "قم بإسقاط المستندات هنا أو انقر للتحديد (PDF، Word، Excel، ملفات نصية)"
+        },
+        "messages": {
+            "title": "الرسائل",
+            "placeholder": "اكتب رسالتك..."
+        },
+        "queue": {
+            "title": "قائمة التحميل (اسحب لإعادة الترتيب)",
+            "message": "رسالة نصية",
+            "image": "صورة",
+            "audio": "ملف صوتي",
+            "video": "فيديو",
+            "document": "مستند",
+            "removeItem": "إزالة من القائمة",
+            "empty": "قائمة التحميل فارغة",
+            "media": "التعليق التوضيحي"
+        },
+        "sendQueue": "تحميل الوسائط",
+        "submit": "إرسال",
+        "add": "إضافة",
+        "caption": "التعليق التوضيحي",
+        "loading": "جاري التحميل...",
+        "selectAll": "تحديد الكل",
+        "deleteSelected": "حذف المحدد",
+        "addSelectedToQueue": "إضافة المحدد إلى قائمة الانتظار"
+    },
+    "dataImport": {
+        "importPhoneNumbers": "استيراد أرقام الهواتف",
+        "dropExcelFile": "أسقط ملف Excel هنا أو انقر للتحديد",
+        "addNumberManually": "إضافة رقم يدويًا",
+        "enterPhoneNumber": "أدخل رقم الهاتف",
+        "numbersPreview": "معاينة الأرقام",
+        "number": "الرقم",
+        "action": "الإجراء",
+        "saveToDatabase": "حفظ في قاعدة البيانات",
+        "resetDatabase": "إعادة تعيين قاعدة البيانات"
+    },
+    "resetDatabase": {
+        "title": "إعادة تعيين قاعدة البيانات",
+        "message": "هل أنت متأكد أنك تريد إعادة تعيين قاعدة البيانات؟ سيؤدي هذا إلى حذف جميع أرقام الهواتف ولا يمكن التراجع عنه.",
+        "confirm": "إعادة تعيين قاعدة البيانات",
+        "cancel": "إلغاء"
+    },
+    "notifications": {
+        "success": {
+            "connected": "تم الاتصال بواتساب بنجاح!",
+            "messageSent": "تم إضافة الرسالة بنجاح",
+            "numberAdded": "تمت إضافة الرقم بنجاح",
+            "numbersSaved": "تم حفظ أرقام الهواتف في قاعدة البيانات",
+            "databaseReset": "تمت إعادة تعيين قاعدة البيانات بنجاح",
+            "mediaUploaded": "تم تحميل الوسائط بنجاح",
+            "mediaAdded": "تمت إضافة الوسائط بنجاح",
+            "messageAdded": "تمت إضافة الرسالة بنجاح"
+        },
+        "error": {
+            "connectionFailed": "فشل الاتصال بواتساب",
+            "messageFailed": "فشل إرسال الرسالة",
+            "numberFailed": "فشل إضافة الرقم",
+            "databaseResetFailed": "فشل إعادة تعيين قاعدة البيانات",
+            "uploadFailed": "فشل تحميل الوسائط"
+        },
+        "loading": {
+            "connecting": "جاري الاتصال بواتساب...",
+            "sending": "جاري إرسال الرسالة...",
+            "uploading": "جاري تحميل الوسائط...",
+            "processing": "جاري معالجة البيانات..."
+        }
+    },
+    "chart": {
+        "title": "الرسائل في الساعة",
+        "timeRange": {
+            "6hours": "٦ ساعات",
+            "12hours": "١٢ ساعة",
+            "24hours": "٢٤ ساعة"
+        },
+        "noData": "لا توجد بيانات رسائل متاحة",
+        "noDataDescription": "ستظهر الرسائل هنا عند إرسالها",
+        "messagesPerHour": "الرسائل في الساعة",
+        "messages": "رسائل"
+    },
+    "dashboard": {
+        "overview": "نظرة عامة على لوحة التحكم"
+    }
+}

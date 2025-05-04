@@ -1,0 +1,180 @@
+{
+    "navigation": {
+        "title": "WASA",
+        "home": "Accueil",
+        "qrScanner": "compte connecté",
+        "mediaUpload": "Télécharger Médias",
+        "excelImport": "numéros exclus",
+        "phoneNumbers": "historique",
+        "logout": "Déconnexion",
+        "logoutModal": {
+            "title": "Confirmer la Déconnexion",
+            "message": "Êtes-vous sûr de vouloir vous déconnecter ? Cela déconnectera votre session WhatsApp.",
+            "cancel": "Annuler",
+            "confirm": "Déconnexion"
+        },
+        "resetDatabase": "Réinitialiser des données"
+    },
+    "home": {
+        "title": "Aperçu du Tableau de Bord",
+        "quickActions": "Actions Rapides",
+        "stats": {
+            "dailyMessages": "Messages quotidiens",
+            "conversionRate": "Taux de conversion",
+            "trafficVolume": " Volume de trafic"
+        },
+        "features": {
+            "qrScanner": {
+                "title": "Scanner QR",
+                "description": "Connecter votre compte WhatsApp"
+            },
+            "mediaUpload": {
+                "title": "Télécharger Médias",
+                "description": "Télécharger des images, audio et messages"
+            },
+            "excelImport": {
+                "title": "Importer Excel",
+                "description": "Importer des données depuis des fichiers Excel"
+            }
+        }
+    },
+    "qrScanner": {
+        "title": "Connexion WhatsApp",
+        "connected": {
+            "title": "WhatsApp Connecté avec Succès !",
+            "description": "Vous pouvez maintenant envoyer des messages et des médias"
+        },
+        "scanning": {
+            "title": "Scanner le Code QR avec WhatsApp",
+            "description": "Ouvrez WhatsApp sur votre téléphone et scannez ce code QR pour vous connecter"
+        },
+        "waiting": {
+            "checking": "Vérification du statut WhatsApp...",
+            "qrCode": "En attente du Code QR..."
+        }
+    },
+    "phoneNumbers": {
+        "title": "Filtrer par date",
+        "filters": {
+            "startDate": "Date de Début",
+            "endDate": "Date de Fin",
+            "selectMonth": "Sélectionner le Mois",
+            "from": "De",
+            "to": "À"
+        },
+        "export": "Exporter",
+        "table": {
+            "id": "ID",
+            "phone": "Téléphone",
+            "addedDate": "Date d'Ajout"
+        },
+        "pagination": {
+            "previous": "Précédent",
+            "next": "Suivant",
+            "page": "Page {{current}} sur {{total}}"
+        },
+        "deleteConfirmation": {
+            "title": "Confirmation de suppression",
+            "message": "Êtes-vous sûr de vouloir supprimer {{count}} numéro(s) ?"
+        },
+        "deleteSelected": "Supprimer"
+    },
+    "upload": {
+        "images": {
+            "title": "Images",
+            "dropzone": "Déposez des images ici ou cliquez pour sélectionner"
+        },
+        "audio": {
+            "title": "Fichiers audio",
+            "dropzone": "Déposez des fichiers audio ici ou cliquez pour sélectionner"
+        },
+        "videos": {
+            "title": "Vidéos",
+            "dropzone": "Déposez des fichiers vidéo ici ou cliquez pour sélectionner"
+        },
+        "documents": {
+            "title": "Documents",
+            "dropzone": "Déposez des documents ici ou cliquez pour sélectionner (PDF, Word, Excel, fichiers texte)"
+        },
+        "messages": {
+            "title": "Messages",
+            "placeholder": "Tapez votre message..."
+        },
+        "queue": {
+            "title": "File d'attente (Glissez pour réorganiser)",
+            "message": "Message texte",
+            "image": "Image",
+            "audio": "Audio",
+            "video": "Vidéo",
+            "document": "Document",
+            "removeItem": "Retirer de la file d'attente",
+            "empty": "Votre file d'attente est vide",
+            "media": "Légende"
+        },
+        "submit": "Soumettre",
+        "add": "Ajouter",
+        "caption": "Légende",
+        "sendQueue": "Téléverser les médias",
+        "loading": "Chargement...",
+        "selectAll": "Tout sélectionner",
+        "deleteSelected": "Supprimer la sélection",
+        "addSelectedToQueue": "Ajouter la sélection à la file d'attente"
+    },
+    "dataImport": {
+        "importPhoneNumbers": "Importer des numéros de téléphone",
+        "dropExcelFile": "Déposez le fichier Excel ici ou cliquez pour sélectionner",
+        "addNumberManually": "Ajouter un numéro manuellement",
+        "enterPhoneNumber": "Entrez le numéro de téléphone",
+        "numbersPreview": "Aperçu des numéros",
+        "number": "Numéro",
+        "action": "Action",
+        "saveToDatabase": "Enregistrer dans la base de données",
+        "resetDatabase": "Réinitialiser la Base de Données"
+    },
+    "resetDatabase": {
+        "title": "Réinitialiser la Base de Données",
+        "message": "Êtes-vous sûr de vouloir réinitialiser la base de données? Cette action supprimera tous les numéros de téléphone et ne peut pas être annulée.",
+        "confirm": "Réinitialiser",
+        "cancel": "Annuler"
+    },
+    "notifications": {
+        "success": {
+            "connected": "WhatsApp connecté avec succès !",
+            "messageSent": "Message envoyé avec succès",
+            "numberAdded": "Numéro ajouté avec succès",
+            "numbersSaved": "Numéros de téléphone enregistrés dans la base de données",
+            "databaseReset": "Base de données réinitialisée avec succès",
+            "mediaUploaded": "Média téléchargé avec succès",
+            "mediaAdded": "Média ajouté avec succès",
+            "messageAdded": "Message ajouté avec succès"
+        },
+        "error": {
+            "connectionFailed": "Échec de la connexion WhatsApp",
+            "messageFailed": "Échec de l'envoi du message",
+            "numberFailed": "Échec de l'ajout du numéro",
+            "databaseResetFailed": "Échec de la réinitialisation de la base de données",
+            "uploadFailed": "Échec du téléchargement du média"
+        },
+        "loading": {
+            "connecting": "Connexion à WhatsApp...",
+            "sending": "Envoi du message...",
+            "uploading": "Téléchargement du média...",
+            "processing": "Traitement des données..."
+        }
+    },
+    "chart": {
+    "title": "Messages par heure",
+    "timeRange": {
+      "6hours": "6 Heures",
+      "12hours": "12 Heures",
+      "24hours": "24 Heures"
+    },
+    "noData": "Aucune donnée de message disponible",
+    "noDataDescription": "Les messages apparaîtront ici lorsqu'ils seront envoyés",
+    "messagesPerHour": "Messages par heure",
+    "messages": "messages"
+  },
+  "dashboard": {
+    "overview": "Vue d'ensemble du tableau de bord"
+  }
+}

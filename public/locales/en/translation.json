@@ -1,0 +1,181 @@
+{
+    "navigation": {
+        "title": "WASA",
+        "home": "Home",
+        "qrScanner": "Connected Account",
+        "mediaUpload": "Media Upload",
+        "excelImport": "Excluded Numbers",
+        "phoneNumbers": "History",
+        "logout": "Logout",
+        "logoutModal": {
+            "title": "Confirm Logout",
+            "message": "Are you sure you want to logout? This will disconnect your WhatsApp session.",
+            "cancel": "Cancel",
+            "confirm": "Logout"
+        },
+        "resetDatabase": "Reset Database"
+    },
+    "home": {
+        "title": "Dashboard Overview",
+        "quickActions": "Quick Actions",
+        "stats": {
+            "dailyMessages": "Daily Messages",
+            "conversionRate": "Conversion Rate",
+            "trafficVolume": "Volume of Traffic"
+        },
+        "features": {
+            "qrScanner": {
+                "title": "QR Scanner",
+                "description": "Connect your WhatsApp account"
+            },
+            "mediaUpload": {
+                "title": "Media Upload",
+                "description": "Upload images, audio and messages"
+            },
+            "excelImport": {
+                "title": "Excel Import",
+                "description": "Import data from Excel files"
+            }
+        }
+    },
+    "qrScanner": {
+        "title": "WhatsApp Connection",
+        "connected": {
+            "title": "WhatsApp Connected Successfully!",
+            "description": "You can now send messages and media"
+        },
+        "scanning": {
+            "title": "Scan QR Code with WhatsApp",
+            "description": "Open WhatsApp on your phone and scan this QR code to connect",
+            "qrCodeAlt": "QR Code"
+        },
+        "waiting": {
+            "checking": "Checking WhatsApp status...",
+            "qrCode": "Waiting for QR Code..."
+        }
+    },
+    "phoneNumbers": {
+        "title": "Phone Numbers",
+        "filters": {
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "selectMonth": "Select Month",
+            "from": "From",
+            "to": "To"
+        },
+        "export": "Export",
+        "table": {
+            "id": "ID",
+            "phone": "Phone",
+            "addedDate": "Added Date"
+        },
+        "pagination": {
+            "previous": "Previous",
+            "next": "Next",
+            "page": "Page {{current}} sur {{total}}"
+        },
+        "deleteConfirmation": {
+            "title": "Delete Confirmation",
+            "message": "Are you sure you want to delete {{count}} number(s)?"
+        },
+        "deleteSelected": "Delete"
+    },
+    "upload": {
+        "images": {
+            "title": "Images",
+            "dropzone": "Drop images here or click to select"
+        },
+        "audio": {
+            "title": "Audio Files",
+            "dropzone": "Drop audio files here or click to select"
+        },
+        "videos": {
+            "title": "Videos",
+            "dropzone": "Drop video files here or click to select"
+        },
+        "documents": {
+            "title": "Documents",
+            "dropzone": "Drop documents here or click to select (PDF, Word, Excel, Text files)"
+        },
+        "messages": {
+            "title": "Messages",
+            "placeholder": "Type your message..."
+        },
+        "queue": {
+            "title": "Upload Queue (Drag to Reorder)",
+            "message": "Text Message",
+            "image": "Image",
+            "audio": "Audio",
+            "video": "Video",
+            "document": "Document",
+            "removeItem": "Remove from queue",
+            "empty": "Your upload queue is empty",
+            "media": "Caption"
+        },
+        "sendQueue": "Upload medias",
+        "submit": "Submit",
+        "add": "Add",
+        "caption": "Caption",
+        "loading": "Loading...",
+        "selectAll": "Select All",
+        "deleteSelected": "Delete Selected",
+        "addSelectedToQueue": "Add Selected to Queue"
+    },
+    "dataImport": {
+        "importPhoneNumbers": "Import Phone Numbers",
+        "dropExcelFile": "Drop Excel file here or click to select",
+        "addNumberManually": "Add Number Manually",
+        "enterPhoneNumber": "Enter phone number",
+        "numbersPreview": "Numbers Preview",
+        "number": "Number",
+        "action": "Action",
+        "saveToDatabase": "Save to Database",
+        "resetDatabase": "Reset Database"
+    },
+    "resetDatabase": {
+        "title": "Reset Database",
+        "message": "Are you sure you want to reset the database? This will delete all phone numbers and cannot be undone.",
+        "confirm": "Reset Database",
+        "cancel": "Cancel"
+    },
+    "notifications": {
+        "success": {
+            "connected": "WhatsApp connected successfully!",
+            "messageSent": "Message sent successfully",
+            "numberAdded": "Number added successfully",
+            "numbersSaved": "Phone numbers saved to database",
+            "databaseReset": "Database reset successfully",
+            "mediaUploaded": "Media uploaded successfully",
+            "mediaAdded": "Media added successfully",
+            "messageAdded": "Message added successfully"
+        },
+        "error": {
+            "connectionFailed": "WhatsApp connection failed",
+            "messageFailed": "Failed to send message",
+            "numberFailed": "Failed to add number",
+            "databaseResetFailed": "Failed to reset database",
+            "uploadFailed": "Failed to upload media"
+        },
+        "loading": {
+            "connecting": "Connecting to WhatsApp...",
+            "sending": "Sending message...",
+            "uploading": "Uploading media...",
+            "processing": "Processing data..."
+        }
+    },
+    "chart": {
+        "title": "Messages per Hour",
+        "timeRange": {
+            "6hours": "6 Hours",
+            "12hours": "12 Hours",
+            "24hours": "24 Hours"
+        },
+        "noData": "No message data available",
+        "noDataDescription": "Messages will appear here as they are sent",
+        "messagesPerHour": "Messages per Hour",
+        "messages": "messages"
+    },
+    "dashboard": {
+        "overview": "Dashboard Overview"
+    }
+}
