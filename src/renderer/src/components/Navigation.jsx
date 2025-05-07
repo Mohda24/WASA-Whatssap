@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import {
@@ -17,10 +17,16 @@ import {
     CloudArrowUpIcon,
     NoSymbolIcon,
     ClockIcon,
+    PhoneXMarkIcon,
+    
+
+
 } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import ResetDatabaseModal from './shared/ResetDatabaseModal'
 import ThemeSwitch from './ThemeSwitch'
+import LogoutModal from './shared/LogoutModal'
+import { useEffect } from 'react'
 
 export default function Navigation() {
     const { darkMode, isRTL } = useApp()
@@ -28,7 +34,17 @@ export default function Navigation() {
     const [isSidebarOpen, setSidebarOpen] = useState(false)
     const [showLanguageMenu, setShowLanguageMenu] = useState(false)
     const [showResetModal, setShowResetModal] = useState(false)
+    const [showLogoutModal, setShowLogoutModal] = useState(false)
     const location = useLocation()
+
+    useEffect(() => {
+        if(isSidebarOpen || showResetModal || showLogoutModal) {
+            document.body.style.overflow = 'hidden'
+        }else{
+            document.body.style.overflow = 'auto'
+        }
+
+    },[isSidebarOpen,showResetModal,showLogoutModal])
 
 
 
@@ -40,28 +56,28 @@ export default function Navigation() {
     const navItems = [
         {
             name: t('navigation.home'),
-            icon: HomeModernIcon,
+            icon: HomeIcon,
             path: '/',
             activeColor: 'from-emerald-400 to-green-500',
             hoverColor: 'hover:text-emerald-500'
         },
         {
             name: t('navigation.qrScanner'),
-            icon:  DevicePhoneMobileIcon,
+            icon: DevicePhoneMobileIcon,
             path: '/scanner',
             activeColor: 'from-purple-400 to-violet-500',
             hoverColor: 'hover:text-purple-500'
         },
         {
             name: t('navigation.mediaUpload'),
-            icon:CloudArrowUpIcon, 
+            icon: CloudArrowUpIcon,
             path: '/upload',
             activeColor: 'from-blue-400 to-cyan-500',
             hoverColor: 'hover:text-blue-500'
         },
         {
             name: t('navigation.excelImport'),
-            icon:NoSymbolIcon,
+            icon: PhoneXMarkIcon,
             path: '/excel',
             activeColor: 'from-orange-400 to-amber-500',
             hoverColor: 'hover:text-orange-500'
@@ -204,6 +220,19 @@ export default function Navigation() {
                         <TrashIcon className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform duration-300" />
                         <span className="font-medium">{t('navigation.resetDatabase')}</span>
                     </button>
+                    {/* Logout Function */}
+                    <button
+                    onClick={() => setShowLogoutModal(true)}
+                    className={`
+                        w-full flex items-center px-4 py-3 rounded-xl
+                        transition-all duration-300 group
+                        bg-gradient-to-r from-red-400 to-pink-500 
+                        text-white hover:shadow-lg capitalize hover:shadow-red-500/20
+                    `}
+                >
+                    <PowerIcon className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                    <span className="font-medium">{t('navigation.migrate')}</span>
+                </button>
 
                 </div>
             </div>
@@ -214,9 +243,15 @@ export default function Navigation() {
                     onClick={() => setSidebarOpen(false)}
                 />
             )}
+            {/* Reset */}
             <ResetDatabaseModal
                 isOpen={showResetModal}
                 onClose={() => setShowResetModal(false)}
+            />
+            {/* LogoutModel */}
+            <LogoutModal
+                isOpen={showLogoutModal}
+                onClose={() => setShowLogoutModal(false)}
             />
         </>
     )

@@ -13,7 +13,8 @@
             "cancel": "Annuler",
             "confirm": "Déconnexion"
         },
-        "resetDatabase": "Réinitialiser des données"
+        "resetDatabase": "Réinitialiser des données",
+        "migrate":"immigrer"
     },
     "home": {
         "title": "Aperçu du Tableau de Bord",
@@ -163,18 +164,39 @@
         }
     },
     "chart": {
-    "title": "Messages par heure",
-    "timeRange": {
-      "6hours": "6 Heures",
-      "12hours": "12 Heures",
-      "24hours": "24 Heures"
+        "title": "Messages par heure",
+        "timeRange": {
+            "6hours": "6 Heures",
+            "12hours": "12 Heures",
+            "24hours": "24 Heures"
+        },
+        "noData": "Aucune donnée de message disponible",
+        "noDataDescription": "Les messages apparaîtront ici lorsqu'ils seront envoyés",
+        "messagesPerHour": "Messages par heure",
+        "messages": "messages"
     },
-    "noData": "Aucune donnée de message disponible",
-    "noDataDescription": "Les messages apparaîtront ici lorsqu'ils seront envoyés",
-    "messagesPerHour": "Messages par heure",
-    "messages": "messages"
+    "dashboard": {
+        "overview": "Vue d'ensemble du tableau de bord"
+    },
+    "auth": {
+        "title": "Entrez la Clé de Licence",
+        "placeholder": "Votre clé de licence",
+        "submit": "Soumettre",
+        "verifying": "Vérification…",
+        "error": "Clé de licence invalide ou déjà utilisée",
+        "instructions": "Veuillez entrer une clé de licence valide pour continuer."
+    },
+    "logout": {
+    "confirmTitle": "Confirmer la déconnexion",
+     "sensitiveKeyWarning": "Ceci est votre clé de licence. Veuillez la sauvegarder pour une utilisation future."
   },
-  "dashboard": {
-    "overview": "Vue d'ensemble du tableau de bord"
+  "common": {
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "copy": "Copier"
+  },
+  "keyReset": {
+    "successMessage": "La clé de licence a été réinitialisée avec succès",
+    "errorMessage": "Échec de la réinitialisation de la clé de licence. Veuillez réessayer."
   }
 }

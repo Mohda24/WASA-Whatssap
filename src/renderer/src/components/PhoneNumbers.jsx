@@ -18,7 +18,7 @@ export default function PhoneNumbers() {
         loading,
         fetchNumbers,
         isRTL
-        
+
     } = useApp()
 
     const [selectedNumbers, setSelectedNumbers] = useState([])
@@ -52,16 +52,22 @@ export default function PhoneNumbers() {
     }, [])
 
     const exportToExcel = () => {
-        const dataToExport = numbers.map(number => ({
+        // If there are selected numbers, only export those
+        const dataToExport = selectedNumbers.length > 0
+            ? numbers.filter(number => selectedNumbers.includes(number.id))
+            : numbers;
+
+        const formattedData = dataToExport.map(number => ({
             ID: number.id,
             'Phone Number': number.phone,
             'Added Date': new Date(number.created_at).toLocaleDateString()
-        }))
-        const wb = XLSX.utils.book_new()
-        const ws = XLSX.utils.json_to_sheet(dataToExport)
-        XLSX.utils.book_append_sheet(wb, ws, 'Numbers')
-        XLSX.writeFile(wb, `phone_numbers_${new Date().toISOString().split('T')[0]}.xlsx`)
-    }
+        }));
+
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(formattedData);
+        XLSX.utils.book_append_sheet(wb, ws, 'Numbers');
+        XLSX.writeFile(wb, `phone_numbers_${new Date().toISOString().split('T')[0]}.xlsx`);
+    };
 
     const handleSelectAll = () => {
         if (selectedNumbers.length === numbers.length) {
@@ -92,16 +98,36 @@ export default function PhoneNumbers() {
     // Add the actual delete function
     const confirmDelete = async () => {
         try {
-            for (const id of selectedNumbers) {
-                await window.api.resetPhoneNumberById(id)
-            }
-            setSelectedNumbers([])
-            fetchNumbers(currentPage, filters)
+            // First close the modal
             setIsDeleteModalOpen(false)
+
+            // Delete all selected numbers
+            await Promise.all(selectedNumbers.map(id => window.api.resetPhoneNumberById(id)))
+
+            // Clear selection
+            setSelectedNumbers([])
+
+            // Reset to first page if current page becomes empty
+            const remainingItems = numbers.length - selectedNumbers.length
+            const itemsPerPage = 10 // Adjust this based on your actual items per page
+            if (remainingItems <= (currentPage - 1) * itemsPerPage) {
+                setCurrentPage(1)
+            }
+
+            // Fetch updated numbers with current filters
+            const formattedFilters = {
+                startDate: filters.startDate ? filters.startDate.toLocaleDateString('en-CA') : '',
+                endDate: filters.endDate ? filters.endDate.toLocaleDateString('en-CA') : '',
+                month: filters.month
+            }
+
+            // Fetch the updated data
+            await fetchNumbers(currentPage, formattedFilters)
         } catch (error) {
             console.error('Error deleting numbers:', error)
         }
     }
+
 
     return (
         <div className="space-y-6">
@@ -114,7 +140,7 @@ export default function PhoneNumbers() {
                 </h1>
 
                 <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>  {t('phoneNumbers.filters.from')}: </span>
                         <DatePicker
                             selected={filters.startDate}
@@ -181,7 +207,7 @@ export default function PhoneNumbers() {
                         <table className="min-w-full">
                             <thead>
                                 <tr className={`border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                                    <th className={`px-6 py-3 ${isRTL ? "" :"text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    <th className={`px-6 py-3 ${isRTL ? "" : "text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                         <input
                                             type="checkbox"
                                             checked={selectedNumbers.length === numbers.length && numbers.length > 0}
@@ -189,13 +215,13 @@ export default function PhoneNumbers() {
                                             className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                         />
                                     </th>
-                                    <th className={`px-6 py-3 ${isRTL ? "" :"text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    <th className={`px-6 py-3 ${isRTL ? "" : "text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                         {t('phoneNumbers.table.id')}
                                     </th>
-                                    <th className={`px-6 py-3 ${isRTL ? "" :"text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    <th className={`px-6 py-3 ${isRTL ? "" : "text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                         {t('phoneNumbers.table.phone')}
                                     </th>
-                                    <th className={`px-6 py-3 ${isRTL ? "" :"text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    <th className={`px-6 py-3 ${isRTL ? "" : "text-left"}  text-xs font-medium uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                         {t('phoneNumbers.table.addedDate')}
                                     </th>
                                 </tr>
@@ -203,15 +229,15 @@ export default function PhoneNumbers() {
                             <tbody>
                                 {numbers.map((number) => (
                                     <tr
-                                    key={number.id}
-                                    onClick={() => handleSelectNumber(number.id)}
-                                    className={`transition-colors duration-150 cursor-pointer
+                                        key={number.id}
+                                        onClick={() => handleSelectNumber(number.id)}
+                                        className={`transition-colors duration-150 cursor-pointer
                                         ${selectedNumbers.includes(number.id)
-                                            ? (darkMode ? 'bg-indigo-900/30' : 'bg-indigo-50')
-                                            : ''
-                                        }
+                                                ? (darkMode ? 'bg-indigo-900/30' : 'bg-indigo-50')
+                                                : ''
+                                            }
                                         hover:${darkMode ? 'bg-gray-700/50' : 'bg-indigo-50/50'}`}
-                                >
+                                    >
                                         <td className={`px-6 py-4 whitespace-nowrap text-sm ${darkMode ? 'text-gray-300' : 'text-gray-900'}`}
                                             onClick={(e) => e.stopPropagation()}
                                         >
@@ -267,7 +293,7 @@ export default function PhoneNumbers() {
             {/* Modal For Confirm Delete */}
             {
                 isDeleteModalOpen && (
-                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 m-0!"/>
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 m-0!" />
                 )
             }
             {
@@ -281,7 +307,7 @@ export default function PhoneNumbers() {
                 )
             }
 
-           
+
         </div>
 
     )

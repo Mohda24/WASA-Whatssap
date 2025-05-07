@@ -8,7 +8,7 @@ let tray = null
 export function createMainWindow() {
     // Enforce single instance
     const gotTheLock = app.requestSingleInstanceLock()
-    
+
     if (!gotTheLock) {
         app.quit()
         return null
@@ -25,7 +25,7 @@ export function createMainWindow() {
 
     // Start power save blocker
     const powerSaveId = powerSaveBlocker.start('prevent-display-sleep')
-    
+
     const mainWindow = new BrowserWindow({
         width: 900,
         height: 670,
@@ -35,6 +35,7 @@ export function createMainWindow() {
         webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false,
+            icon: icon,
             nodeIntegration: true,
             contextIsolation: true,
             devTools: true,
@@ -58,8 +59,8 @@ export function createMainWindow() {
             }
         }
     ])
-    
-    tray.setToolTip('WhatsApp Bot')
+
+    tray.setToolTip('WASA')
     tray.setContextMenu(contextMenu)
 
     // Handle tray icon click
@@ -114,6 +115,20 @@ export function createMainWindow() {
             powerSaveBlocker.stop(powerSaveId)
         }
     })
+
+    // mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    //     callback({
+    //         responseHeaders: {
+    //             ...details.responseHeaders,
+    //             'Content-Security-Policy': [
+    //                 "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
+    //             ]
+    //         }
+    //     });
+    // });
+
+
+
 
     return mainWindow
 }

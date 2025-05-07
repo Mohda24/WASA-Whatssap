@@ -12,6 +12,7 @@ import { readMediaFolder } from '../helpers/readMediaFolder'; // import it
 import { getHourlyStats, resetHourlyStats } from '../helpers/CountMessages'; // import it
 import { getDailyStats, resetStats } from "../helpers/StatsHelpers"
 
+
 export function registerIpcHandlers(client, mainWindow, db) {
     // data
     const mediaData = getMediaData()
@@ -207,4 +208,7 @@ export function registerIpcHandlers(client, mainWindow, db) {
     ipcMain.handle('get-daily-stats', (_e, days) => {
         return getDailyStats(db, days);  // Fixed parameter order: db first, then days
     });
+    // Handle Auth
+    // In main process setup
+    
 }

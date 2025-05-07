@@ -29,6 +29,7 @@
     "@tailwindcss/postcss": "^4.1.4",
     "better-sqlite3": "^11.9.1",
     "chart.js": "^4.4.9",
+    "firebase": "^11.6.1",
     "fluent-ffmpeg": "^2.1.3",
     "i18next": "^25.0.1",
     "i18next-browser-languagedetector": "^8.0.5",

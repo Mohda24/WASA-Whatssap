@@ -49,7 +49,8 @@ contextBridge.exposeInMainWorld('api', {
   // Add to your existing contextBridge.exposeInMainWorld
   logoutWhatsApp: () => ipcRenderer.invoke('logout-whatsapp'),
   getHourlyStats: (hours) => ipcRenderer.invoke('get-hourly-stats', hours),
-  getDailyStats: (days) => ipcRenderer.invoke('get-daily-stats', days)
+  getDailyStats: (days) => ipcRenderer.invoke('get-daily-stats', days),
+
   
   
 })

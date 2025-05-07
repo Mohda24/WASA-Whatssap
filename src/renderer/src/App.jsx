@@ -1,27 +1,19 @@
-import React, { useEffect } from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import Navigation from './components/Navigation'
-import QRCodeScanner from './components/QRCodeScanner'
-import UploadData from './components/UploadData'
-import DataImport from './components/DataImport'
-import Home from './components/Home'
-import PhoneNumbers from './components/PhoneNumbers'
-import { AppProvider, useApp } from './context/AppContext'
+// src/App.jsx (or wherever you configure Router)
+import React, { useEffect } from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { AppProvider, useApp } from './context/AppContext';
+import Auth from './components/Auth';
+import Layout from './components/shared/Layout';
+import ProtectedRoute from './components/shared/ProtectedRoute';
+import Home from './components/Home';
+import QRCodeScanner from './components/QRCodeScanner';
+import UploadData from './components/UploadData';
+import DataImport from './components/DataImport';
+import PhoneNumbers from './components/PhoneNumbers';
 import './i18n';
 
-function App() {
-    return (
-        <AppProvider>
-            <AppContentInside />
-        </AppProvider>
-    )
-}
-
 function AppContentInside() {
-    const { 
-        darkMode,
-        isRTL 
-    } = useApp()
+    const { isRTL } = useApp();
 
     useEffect(() => {
         document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
@@ -29,20 +21,29 @@ function AppContentInside() {
 
     return (
         <Router>
-            <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
-                <Navigation />
-                <div className={`${isRTL ? 'lg:mr-64' : 'lg:ml-64'} p-8`}>
-                    <Routes>
+            <Routes>
+                {/* Public Auth page, no Navigation */}
+                <Route path="/auth" element={<Auth />} />
+
+                {/* All other routes go through ProtectedRoute + Layout */}
+                <Route element={<ProtectedRoute />}>
+                    <Route element={<Layout />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/scanner" element={<QRCodeScanner />} />
                         <Route path="/upload" element={<UploadData />} />
                         <Route path="/excel" element={<DataImport />} />
                         <Route path="/numbers" element={<PhoneNumbers />} />
-                    </Routes>
-                </div>
-            </div>
+                    </Route>
+                </Route>
+            </Routes>
         </Router>
-    )
+    );
 }
 
-export default App
+export default function App() {
+    return (
+        <AppProvider>
+            <AppContentInside />
+        </AppProvider>
+    );
+}

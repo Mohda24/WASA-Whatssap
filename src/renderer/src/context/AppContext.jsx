@@ -10,6 +10,11 @@ export function AppProvider({ children }) {
         const saved = localStorage.getItem('darkMode');
         return saved === 'true';
     });
+    // Login Auth
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        const saved = localStorage.getItem('licenseKey');
+        return saved ? true : false;
+    });
     const [isRTL, setIsRTL] = useState(i18n.language === 'ar');
 
     // WhatsApp connection states
@@ -39,6 +44,11 @@ export function AppProvider({ children }) {
     
     //Chart Messages
     const [chartData, setChartData] = useState(null); 
+
+    // set Key
+    const setKey = useCallback((key) => {
+        localStorage.setItem('licenseKey', key);
+        setIsLoggedIn(true);}, []);
 
     // Generate unique ID for queue items
     const generateId = (type) => {
@@ -348,7 +358,11 @@ export function AppProvider({ children }) {
         notify,
         // Message Chart
         chartData,
-        setChartData
+        setChartData,
+        // login
+        isLoggedIn,
+        setIsLoggedIn,
+        setKey
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

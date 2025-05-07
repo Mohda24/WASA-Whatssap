@@ -13,7 +13,8 @@
             "cancel": "Cancel",
             "confirm": "Logout"
         },
-        "resetDatabase": "Reset Database"
+        "resetDatabase": "Reset Database",
+        "migrate":"migrate"
     },
     "home": {
         "title": "Dashboard Overview",
@@ -177,5 +178,26 @@
     },
     "dashboard": {
         "overview": "Dashboard Overview"
-    }
+    },
+    "auth": {
+    "title": "Enter License Key",
+    "placeholder": "Your license key",
+    "submit": "Submit",
+    "verifying": "Verifying…",
+    "error": "Invalid or used license key",
+    "instructions": "Please enter a valid license key to continue."
+    },
+    "logout": {
+    "confirmTitle": "Confirm Logout",
+    "sensitiveKeyWarning": "This is your license key. Please save it for future use."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "copy": "Copy to clipboard"
+  },
+  "keyReset": {
+    "successMessage": "License key has been reset successfully",
+    "errorMessage": "Failed to reset the license key. Please try again."
+  }
 }

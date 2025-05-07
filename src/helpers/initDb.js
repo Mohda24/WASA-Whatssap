@@ -24,13 +24,17 @@ export function initDatabase() {
         )
     `).run()
     // Add this alongside your existing table creation
+    // ... existing code ...
     db.prepare(`
         CREATE TABLE IF NOT EXISTS message_stats (
-            hour TEXT PRIMARY KEY,  -- e.g. "14H" for 2 PM
+            date TEXT NOT NULL,
+            hour TEXT NOT NULL,
             count INTEGER DEFAULT 0,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (date, hour)
         )
     `).run();
+// ... existing code ...
   // stats table for daily statistics 
     db.prepare(`
         CREATE TABLE IF NOT EXISTS daily_stats (
