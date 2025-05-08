@@ -2,13 +2,14 @@ import { BrowserWindow, shell, powerSaveBlocker, Tray, Menu, app } from 'electro
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
 import { is } from '@electron-toolkit/utils'
+import path from 'path'
 
 let tray = null
 
 export function createMainWindow() {
     // Enforce single instance
     const gotTheLock = app.requestSingleInstanceLock()
-
+    
     if (!gotTheLock) {
         app.quit()
         return null
@@ -25,8 +26,10 @@ export function createMainWindow() {
 
     // Start power save blocker
     const powerSaveId = powerSaveBlocker.start('prevent-display-sleep')
-
+    
     const mainWindow = new BrowserWindow({
+        title: "WhatsApp Auto Smart Assistant 'WASA'",
+        icon: path.join(__dirname, '../../resources/icon.ico'),
         width: 900,
         height: 670,
         show: false,
@@ -35,13 +38,15 @@ export function createMainWindow() {
         webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false,
-            icon: icon,
             nodeIntegration: true,
             contextIsolation: true,
-            devTools: true,
+            devTools: false,
             backgroundThrottling: false  // Add this line to prevent background throttling
         }
     })
+
+    mainWindow.setTitle("WhatsApp Auto Smart Assistant 'WASA'")
+ 
 
     // Create tray icon
     tray = new Tray(icon)
@@ -59,7 +64,7 @@ export function createMainWindow() {
             }
         }
     ])
-
+    
     tray.setToolTip('WASA')
     tray.setContextMenu(contextMenu)
 
@@ -89,12 +94,7 @@ export function createMainWindow() {
         app.isQuitting = true
     })
 
-    mainWindow.webContents.on('before-input-event', (event, input) => {
-        if (input.control && input.key.toLowerCase() === 'i') {
-            mainWindow.webContents.openDevTools()
-            event.preventDefault()
-        }
-    })
+
 
     mainWindow.on('ready-to-show', () => mainWindow.show())
 
@@ -116,19 +116,8 @@ export function createMainWindow() {
         }
     })
 
-    // mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
-    //     callback({
-    //         responseHeaders: {
-    //             ...details.responseHeaders,
-    //             'Content-Security-Policy': [
-    //                 "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
-    //             ]
-    //         }
-    //     });
-    // });
-
-
-
-
     return mainWindow
 }
+
+
+
