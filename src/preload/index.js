@@ -2,15 +2,41 @@ import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('api', {
   receive: (channel, func) => {
-    const validChannels = ['qr', 'ready', 'authenticated', 'whatsapp-error', 'connection-status','new-message']
+    const validChannels = [
+      'qr', 
+      'ready', 
+      'authenticated', 
+      'whatsapp-error', 
+      'connection-status',
+      'new-message',
+      'update-message-count',
+      'get-initial-count',
+      'message-limit-reached'
+    ]
     if (validChannels.includes(channel)) {
       ipcRenderer.on(channel, (_, ...args) => func(...args))
     }
   },
   removeListener: (channel, func) => {
-    const validChannels = ['qr', 'ready', 'authenticated', 'whatsapp-error', 'connection-status', 'new-message']
+    const validChannels = [
+      'qr', 
+      'ready', 
+      'authenticated', 
+      'whatsapp-error', 
+      'connection-status', 
+      'new-message',
+      'update-message-count',
+      'get-initial-count',
+      'message-limit-reached'
+    ]
     if (validChannels.includes(channel)) {
       ipcRenderer.removeListener(channel, func)
+    }
+  },
+  send: (channel, data) => {
+    const validChannels = ['initial-count-reply'];
+    if (validChannels.includes(channel)) {
+      ipcRenderer.send(channel, data);
     }
   },
 
@@ -30,15 +56,15 @@ contextBridge.exposeInMainWorld('api', {
 
   getPhoneNumbers: async (params) => {
     try {
-        return await ipcRenderer.invoke('getPhoneNumbers', params)
+      return await ipcRenderer.invoke('getPhoneNumbers', params)
     } catch (error) {
-        console.error('Failed to get phone numbers:', error)
-        return {
-            numbers: [],
-            total: 0
-        }
+      console.error('Failed to get phone numbers:', error)
+      return {
+        numbers: [],
+        total: 0
+      }
     }
-},
+  },
   resetPhoneNumbers: () => {
     return ipcRenderer.invoke('resetPhoneNumbers')
   },
@@ -50,6 +76,4 @@ contextBridge.exposeInMainWorld('api', {
   logoutWhatsApp: () => ipcRenderer.invoke('logout-whatsapp'),
   getHourlyStats: (hours) => ipcRenderer.invoke('get-hourly-stats', hours),
   getDailyStats: (days) => ipcRenderer.invoke('get-daily-stats', days)
-  
-  
 })

@@ -14,7 +14,8 @@ asarUnpack:
   - "node_modules/puppeteer-core/**/*"
   - resources/**
 win:
-  executableName: bot
+  executableName: WASA,
+  icon: "resources/icon.png"
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

@@ -1,11 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "whatssapbot",
+  "name": "wasa",
+  "productName": "WhatsApp Auto Smart Assistant 'WASA'",
   "version": "1.0.0",
-  "description": "Whatssap Bot",
+  "description": "WhatsApp Auto Smart Assistant",
   "main": "./out/main/index.js",
   "author": "Mohda",
   "homepage": "https://electron-vite.org",
+  
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
@@ -61,5 +63,12 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "vite": "^6.2.6"
+  },
+  "build": {
+    "appId": "Mohda",
+    "productName": "WhatsApp Auto Smart Assistant 'WASA'",
+    "win": {
+      "icon": "resources/icon.ico"
+    }
   }
 }

@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 
 const AppContext = createContext();
 
@@ -11,6 +13,57 @@ export function AppProvider({ children }) {
         return saved === 'true';
     });
     const [isRTL, setIsRTL] = useState(i18n.language === 'ar');
+
+    // 🟢 NEW: initialize messageCount from localStorage directly
+    const [messageCount, setMessageCount] = useState(() => {
+        const count = parseInt(localStorage.getItem('messageCount') || '0');
+        return count;
+    });
+// Initialize message listeners
+const navigate = useNavigate();
+
+    useEffect(() => {
+        // Handler for direct message count updates from main process
+        const handleUpdateMessageCount = (newCount) => {
+            console.log('Received message count update:', newCount);
+            setMessageCount(newCount);
+            localStorage.setItem('messageCount', newCount.toString());
+        };
+
+        // Handler to send initial count to main process
+        const handleGetInitialCount = () => {
+            const count = localStorage.getItem('messageCount') || '0';
+            console.log('Sending initial count:', count);
+            window.api.send('initial-count-reply', count);
+        };
+
+        // Handler for limit reached
+        const handleLimitReached = () => {
+            console.log('Message limit reached, redirecting to premium');
+            navigate('/premium');
+        };
+
+        // Connection status handler
+        const handleConnectionStatus = (status) => {
+            console.log('Connection status update:', status);
+            setConnectionStatus(status.status);
+            setIsAuthenticated(status.status === 'connected');
+        };
+
+        // Add listeners
+        window.api.receive('update-message-count', handleUpdateMessageCount);
+        window.api.receive('get-initial-count', handleGetInitialCount);
+        window.api.receive('message-limit-reached', handleLimitReached);
+
+
+        // Cleanup listeners on unmount
+        return () => {
+            window.api.removeListener('update-message-count', handleUpdateMessageCount);
+            window.api.removeListener('get-initial-count', handleGetInitialCount);
+            window.api.removeListener('message-limit-reached', handleLimitReached);
+
+        };
+    }, [navigate]);
 
     // WhatsApp connection states
     const [isConnected, setIsConnected] = useState(false);
@@ -36,9 +89,9 @@ export function AppProvider({ children }) {
     const [excelData, setExcelData] = useState([]);
     const [manualNumber, setManualNumber] = useState('');
     const [selectedColumn, setSelectedColumn] = useState('');
-    
+
     //Chart Messages
-    const [chartData, setChartData] = useState(null); 
+    const [chartData, setChartData] = useState(null);
 
     // Generate unique ID for queue items
     const generateId = (type) => {
@@ -348,7 +401,8 @@ export function AppProvider({ children }) {
         notify,
         // Message Chart
         chartData,
-        setChartData
+        setChartData,
+        messageCount
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

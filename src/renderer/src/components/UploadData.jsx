@@ -11,6 +11,9 @@ import {
     PlusIcon,
     FilmIcon,
     DocumentIcon,
+    SpeakerWaveIcon,
+    MicrophoneIcon // Added icon for audio
+
 } from '@heroicons/react/24/outline'
 import {
     DndContext,
@@ -720,7 +723,7 @@ export default function UploadData() {
                 {/* Audio Section */}
                 <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-sm`}>
                     <div className="flex items-center gap-2 mb-4">
-                        <MusicalNoteIcon className={`h-6 w-6 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`} />
+                        <MicrophoneIcon className={`h-6 w-6 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`} />
                         <h2 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{t('upload.audio.title')}</h2>
                     </div>
 

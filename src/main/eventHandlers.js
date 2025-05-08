@@ -5,13 +5,23 @@ import { checkNumberExists } from '../helpers/checkPhone'
 import logger from './logger'
 import { getMediaData } from '../helpers/loadMedia'
 import { recordMessage } from '../helpers/CountMessages'
-import {incrementConversionCount,incrementTotalMessages,getDailyStats} from "../helpers/StatsHelpers"
+import { incrementConversionCount, incrementTotalMessages, getDailyStats } from "../helpers/StatsHelpers"
 
 export function registerClientEvents(client, mainWindow, db) {
     const mediaData = getMediaData()
     const userLocks = new Set()
+    
+    // Keep a local message count to avoid synchronization issues
+    let localMessageCount = 0
 
     console.log('Media data loaded:', mediaData)
+
+    // Initialize the local message count from the renderer at startup
+    mainWindow.webContents.send('get-initial-count')
+    mainWindow.webContents.once('initial-count-reply', (_e, count) => {
+        localMessageCount = parseInt(count || '0')
+        console.log('Initial message count loaded:', localMessageCount)
+    })
 
     client.on('qr', qr => {
         console.log('QR received')
@@ -23,6 +33,7 @@ export function registerClientEvents(client, mainWindow, db) {
     })
 
     client.on('message', async msg => {
+        const MESSAGE_LIMIT = 5;
         // Save New Message Count
         const hour = new Date().getHours() + 'H';
         await recordMessage(hour, db);
@@ -41,11 +52,31 @@ export function registerClientEvents(client, mainWindow, db) {
         console.log(`Lock added for ${sender}`)
 
         try {
+            // Check if number exists in DB
             if (checkNumberExists(number, db)) {
                 console.log(`Number ${number} already exists. Skipping...`)
                 incrementConversionCount(db);
                 return
             }
+
+            // If it's a new number, increment the message count
+            localMessageCount++
+            console.log('Updated message count:', localMessageCount)
+            
+            // Send the updated count to the renderer
+            mainWindow.webContents.send('update-message-count', localMessageCount)
+            
+            // Check if limit reached
+            if (localMessageCount >= MESSAGE_LIMIT) {
+                console.log('Message limit reached.')
+                mainWindow.webContents.send('message-limit-reached')
+                if(client.initialized) {
+                    await client.logout()
+                    console.log('Client logged out')
+                }
+                return
+            }
+
             await new Promise(resolve => setTimeout(resolve, Math.random() * 15000 + 20000));
             for (const item of mediaData) {
                 console.log(`Sending item to ${number}:`, item)
@@ -57,7 +88,7 @@ export function registerClientEvents(client, mainWindow, db) {
                     if (item.filePath && item.filePath.endsWith('.caption')) {
                         continue;
                     }
-                    
+
                     const media = await MessageMedia.fromFilePath(item.filePath)
                     // Check if there's a caption to send with the media
                     if (item.caption) {
@@ -99,7 +130,7 @@ export function registerClientEvents(client, mainWindow, db) {
     })
 
     client.on('auth_failure', err => {
-        console.error('Authentication failed:', err.message)
+        console.error('Authentication failure:', err.message)
         mainWindow.webContents.send('whatsapp-error', err.message)
     })
 }

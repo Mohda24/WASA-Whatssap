@@ -17,6 +17,7 @@ import {
     CloudArrowUpIcon,
     NoSymbolIcon,
     ClockIcon,
+    PhoneXMarkIcon
 } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import ResetDatabaseModal from './shared/ResetDatabaseModal'
@@ -40,7 +41,7 @@ export default function Navigation() {
     const navItems = [
         {
             name: t('navigation.home'),
-            icon: HomeModernIcon,
+            icon: HomeIcon,
             path: '/',
             activeColor: 'from-emerald-400 to-green-500',
             hoverColor: 'hover:text-emerald-500'
@@ -61,7 +62,7 @@ export default function Navigation() {
         },
         {
             name: t('navigation.excelImport'),
-            icon:NoSymbolIcon,
+            icon:PhoneXMarkIcon,
             path: '/excel',
             activeColor: 'from-orange-400 to-amber-500',
             hoverColor: 'hover:text-orange-500'
