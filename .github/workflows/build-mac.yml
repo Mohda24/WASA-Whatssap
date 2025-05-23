@@ -2,7 +2,7 @@ name: Build macOS app
 
 on:
   push:
-    branches: [KeyFeature] # or change to your branch
+    branches: [KeyFeature]
 
 jobs:
   build-mac:
@@ -24,7 +24,8 @@ jobs:
         run: npm run build:mac
 
       - name: Upload .dmg file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-app
           path: dist/*.dmg
+
