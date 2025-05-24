@@ -23,6 +23,12 @@ export function registerClientEvents(client, mainWindow, db) {
     })
 
     client.on('message', async msg => {
+        // Check if the message is from a group
+        const isGroup=msg.from.endsWith('@g.us');
+        if (isGroup) {
+            console.log('Message is from a group. Skipping...')
+            return
+        }
         // Save New Message Count
         const hour = new Date().getHours() + 'H';
         await recordMessage(hour, db);
@@ -46,7 +52,7 @@ export function registerClientEvents(client, mainWindow, db) {
                 incrementConversionCount(db);
                 return
             }
-            await new Promise(resolve => setTimeout(resolve, Math.random() * 15000 + 20000));
+            await new Promise(resolve => setTimeout(resolve, Math.random() * 5000 + 5000));
             for (const item of mediaData) {
                 console.log(`Sending item to ${number}:`, item)
                 if (item.type === 'message') {

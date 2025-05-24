@@ -100,7 +100,17 @@ export default function UploadData() {
     const { getRootProps: getAudioProps, getInputProps: getAudioInputProps } = useDropzone({ onDrop: onDropAudios, accept: { 'audio/*': [] } })
     const { getRootProps: getVideoProps, getInputProps: getVideoInputProps } = useDropzone({
         onDrop: onDropVideos,
-        accept: { 'video/*': [] }
+        accept: { 'video/*': [] },
+        maxSize: 10 * 1024 * 1024, // 10MB in bytes
+        onDropRejected: (rejectedFiles) => {
+            rejectedFiles.forEach(({ file, errors }) => {
+                errors.forEach(error => {
+                    if (error.code === 'file-too-large') {
+                        alert(`File ${file.name} is too large. Maximum size is 10MB.`);
+                    }
+                });
+            });
+        }
     })
     const { getRootProps: getDocumentProps, getInputProps: getDocumentInputProps } = useDropzone({
         onDrop: onDropDocuments,
@@ -284,12 +294,10 @@ export default function UploadData() {
     // Add handler for adding selected images to queue
     const addSelectedToQueue = () => {
         const timestamp = Date.now()
-        // Convert selected images into array while preserving original order
         const selectedItems = images
             .map((img, index) => ({ img, index, isSelected: selectedImages[index] }))
             .filter(item => item.isSelected);
-
-        // Add each selected image to queue in order
+        
         selectedItems.forEach(({ img, index }, arrayIndex) => {
             const uniqueId = `image_${timestamp}_${arrayIndex}`
             addImageToQueue(
@@ -339,12 +347,10 @@ export default function UploadData() {
     // Add handler for adding selected videos to queue
     const addSelectedVideosToQueue = () => {
         const timestamp = Date.now()
-        // Convert selected videos into array while preserving original order
         const selectedItems = videos
             .map((vid, index) => ({ vid, index, isSelected: selectedVideos[index] }))
             .filter(item => item.isSelected);
-
-        // Add each selected video to queue in order
+        
         selectedItems.forEach(({ vid, index }, arrayIndex) => {
             const uniqueId = `video_${timestamp}_${arrayIndex}`
             addVideoToQueue(
@@ -446,7 +452,7 @@ export default function UploadData() {
 
 
 
-    // Modify the image section to include caption input
+    // Replace the input fields with textareas in your JSX
     return (
         <div className="grid grid-cols-1 gap-6 p-6">
             {/* Left Column */}
@@ -537,13 +543,13 @@ export default function UploadData() {
                                             />
                                         </div>
                                         <div className="p-2">
-                                            <input
-                                                type="text"
+                                            <textarea
                                                 placeholder={t('upload.caption')}
                                                 className={`w-full px-2 py-1 text-sm rounded ${darkMode ? 'bg-gray-600 text-white' : 'bg-white'}`}
                                                 value={imageCaptions[i] || ''}
                                                 onClick={(e) => e.stopPropagation()}
                                                 onChange={(e) => setImageCaptions({ ...imageCaptions, [i]: e.target.value })}
+                                                rows="2"
                                             />
                                         </div>
                                     </div>
@@ -637,13 +643,13 @@ export default function UploadData() {
                                             controls
                                         />
                                         <div className="p-2">
-                                            <input
-                                                type="text"
+                                            <textarea
                                                 placeholder={t('upload.caption')}
                                                 className={`w-full px-2 py-1 text-sm rounded ${darkMode ? 'bg-gray-600 text-white' : 'bg-white'}`}
                                                 value={videoCaptions[i] || ''}
                                                 onClick={(e) => e.stopPropagation()}
-                                                onChange={(e) =>  setVideoCaptions({ ...imageCaptions, [i]: e.target.value })}
+                                                onChange={(e) => setVideoCaptions({ ...videoCaptions, [i]: e.target.value })}
+                                                rows="2"
                                             />
                                         </div>
                                     </div>
