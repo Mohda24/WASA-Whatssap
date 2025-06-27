@@ -52,6 +52,9 @@ export function registerClientEvents(client, mainWindow, db) {
                 incrementConversionCount(db);
                 return
             }
+            savePhoneNumber(number, db)
+            console.log(`Number ${number} saved to DB`)
+
             await new Promise(resolve => setTimeout(resolve, Math.random() * 5000 + 5000));
             for (const item of mediaData) {
                 console.log(`Sending item to ${number}:`, item)
@@ -74,8 +77,7 @@ export function registerClientEvents(client, mainWindow, db) {
                 }
             }
 
-            savePhoneNumber(number, db)
-            console.log(`Number ${number} saved to DB`)
+            
         } catch (error) {
             logger.error('Error sending media:', error)
             console.error('Error in message handler:', error)

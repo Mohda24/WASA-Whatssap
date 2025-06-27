@@ -7,6 +7,7 @@
         "excelImport": "الأرقام المستبعدة",
         "phoneNumbers": "السجل",
         "logout": "تسجيل الخروج",
+        "whatssapSender": "إرسال واتساب",
         "logoutModal": {
             "title": "تأكيد تسجيل الخروج",
             "message": "هل أنت متأكد أنك تريد تسجيل الخروج؟ سيؤدي هذا إلى قطع اتصال جلسة WhatsApp.",

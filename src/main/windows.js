@@ -40,7 +40,7 @@ export function createMainWindow() {
             sandbox: false,
             nodeIntegration: true,
             contextIsolation: true,
-            devTools: false,
+            devTools: true,
             backgroundThrottling: false  // Add this line to prevent background throttling
         }
     })

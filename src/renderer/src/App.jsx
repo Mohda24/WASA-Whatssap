@@ -10,7 +10,9 @@ import QRCodeScanner from './components/QRCodeScanner';
 import UploadData from './components/UploadData';
 import DataImport from './components/DataImport';
 import PhoneNumbers from './components/PhoneNumbers';
+import{WhatsAppSender}  from './components/WhatssapSender';
 import './i18n';
+import { WhatsAppSenderProvider } from './context/WhatssapSenderContext';
 
 function AppContentInside() {
     const { isRTL } = useApp();
@@ -33,6 +35,7 @@ function AppContentInside() {
                         <Route path="/upload" element={<UploadData />} />
                         <Route path="/excel" element={<DataImport />} />
                         <Route path="/numbers" element={<PhoneNumbers />} />
+                        <Route path="/whatsapp" element={<WhatsAppSender />} />
                     </Route>
                 </Route>
             </Routes>
@@ -43,7 +46,9 @@ function AppContentInside() {
 export default function App() {
     return (
         <AppProvider>
+            <WhatsAppSenderProvider>
             <AppContentInside />
+            </WhatsAppSenderProvider>
         </AppProvider>
     );
 }

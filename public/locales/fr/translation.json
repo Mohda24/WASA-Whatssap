@@ -7,6 +7,7 @@
         "excelImport": "numéros exclus",
         "phoneNumbers": "historique",
         "logout": "Déconnexion",
+        "whatssapSender": "Envoyer WhatsApp",
         "logoutModal": {
             "title": "Confirmer la Déconnexion",
             "message": "Êtes-vous sûr de vouloir vous déconnecter ? Cela déconnectera votre session WhatsApp.",

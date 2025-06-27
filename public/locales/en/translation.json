@@ -7,6 +7,8 @@
         "excelImport": "Excluded Numbers",
         "phoneNumbers": "History",
         "logout": "Logout",
+        "whatssapSender": "Whatsapp Sender",
+
         "logoutModal": {
             "title": "Confirm Logout",
             "message": "Are you sure you want to logout? This will disconnect your WhatsApp session.",

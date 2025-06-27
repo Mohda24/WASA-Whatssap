@@ -18,6 +18,7 @@ import {
     NoSymbolIcon,
     ClockIcon,
     PhoneXMarkIcon,
+
     
 
 
@@ -88,6 +89,14 @@ export default function Navigation() {
             path: '/numbers',
             activeColor: 'from-indigo-400 to-blue-500',
             hoverColor: 'hover:text-indigo-500'
+        },
+        {
+            name: t('navigation.whatssapSender'),
+            icon: ClockIcon,
+            path: '/whatsapp',
+            activeColor: 'from-indigo-400 to-blue-500',
+            hoverColor: 'hover:text-indigo-500'
+
         }
     ]
 
