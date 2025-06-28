@@ -11,11 +11,20 @@ import { registerClientEvents } from './eventHandlers'
 import { readMediaFolder } from '../helpers/readMediaFolder'; // import it
 import { getHourlyStats, resetHourlyStats } from '../helpers/CountMessages'; // import it
 import { getDailyStats, resetStats } from "../helpers/StatsHelpers"
+import {processMediafiles} from '../helpers/ProcecMediaSender'
+import {processBulkSending} from '../helpers/processBulkSending'
 
 
 export function registerIpcHandlers(client, mainWindow, db) {
     // data
     const mediaData = getMediaData()
+    // Initial Bulk Sending Data
+    let bulkSendingData = {
+        numbers: [],
+        mediaData: [],
+        currentIndex: 0,
+        isSending: false
+    }
 
     ipcMain.handle('upload-files', async (_e, { orderedData }) => {
         try {
@@ -159,6 +168,54 @@ export function registerIpcHandlers(client, mainWindow, db) {
         }
     });
 
+    // Send media to a specific number
+    ipcMain.handle('send-media-to-number', async (_e, { number, mediaItems }) => {
+        try {
+            if (!client || !client.info) {
+                return { success: false, error: 'WhatsApp client not connected' }
+            }
+
+            const processedMedia = await processMediaFiles(mediaItems)
+            const phoneNumber = `${number}@c.us`
+
+            // Add random delay to avoid spam detection
+            await new Promise(resolve => setTimeout(resolve, Math.random() * 2000 + 1000))
+
+            // Send each media item in order
+            for (const item of processedMedia) {
+                try {
+                    if (item.type === 'message') {
+                        await client.sendMessage(phoneNumber, item.content)
+                    } else if (item.type === 'media') {
+                        const media = await MessageMedia.fromFilePath(item.filePath)
+                        
+                        if (item.caption) {
+                            await client.sendMessage(phoneNumber, media, { caption: item.caption })
+                        } else {
+                            await client.sendMessage(phoneNumber, media)
+                        }
+                        
+                        // Clean up temporary file
+                        if (fs.existsSync(item.filePath)) {
+                            fs.unlinkSync(item.filePath)
+                        }
+                    }
+                    
+                    // Small delay between messages
+                    await new Promise(resolve => setTimeout(resolve, 500))
+                } catch (itemError) {
+                    console.error(`Error sending item to ${number}:`, itemError)
+                    // Continue with next item even if one fails
+                }
+            }
+
+            return { success: true }
+        } catch (error) {
+            console.error('Error in send-media-to-number:', error)
+            return { success: false, error: error.message }
+        }
+    })
+
 
 
 
@@ -200,6 +257,47 @@ export function registerIpcHandlers(client, mainWindow, db) {
         }
         return { connected: false }
     })
+
+    // NEW BULK SENDING HANDLERS
+    ipcMain.handle('start-bulk-sending', async (_e, { numbers, mediaData }) => {
+        try {
+            if (!client || !client.info || !client.info.wid) {
+                return { success: false, error: 'WhatsApp client not connected' };
+            }
+
+            // Store data in memory
+            bulkSendingData = {
+                numbers: numbers,
+                mediaData: mediaData.sort((a, b) => a.order - b.order), // Sort by order
+                currentIndex: 0,
+                isSending: true
+            };
+
+            console.log('Bulk sending started:', {
+                numbersCount: numbers.length,
+                mediaCount: mediaData.length
+            });
+
+            // Start processing
+            await processBulkSending(client, mainWindow, bulkSendingData);
+
+            return { success: true };
+        } catch (error) {
+            console.error('Error starting bulk sending:', error);
+            return { success: false, error: error.message };
+        }
+    });
+
+    ipcMain.handle('stop-bulk-sending', async () => {
+        try {
+            bulkSendingData.isSending = false;
+            console.log('Bulk sending stopped');
+            return { success: true };
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    });
+
 
     // In your main process
     ipcMain.handle('get-hourly-stats', (_e, hours) => {

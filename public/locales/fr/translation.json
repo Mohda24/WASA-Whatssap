@@ -2,41 +2,41 @@
     "navigation": {
         "title": "WASA",
         "home": "Accueil",
-        "qrScanner": "compte connecté",
-        "mediaUpload": "Télécharger Médias",
-        "excelImport": "numéros exclus",
-        "phoneNumbers": "historique",
+        "qrScanner": "Compte Connecté",
+        "mediaUpload": "Téléchargement Média",
+        "excelImport": "Numéros Exclus",
+        "phoneNumbers": "Historique",
         "logout": "Déconnexion",
-        "whatssapSender": "Envoyer WhatsApp",
+        "whatssapSender": "Expéditeur WhatsApp",
         "logoutModal": {
             "title": "Confirmer la Déconnexion",
             "message": "Êtes-vous sûr de vouloir vous déconnecter ? Cela déconnectera votre session WhatsApp.",
             "cancel": "Annuler",
             "confirm": "Déconnexion"
         },
-        "resetDatabase": "Réinitialiser des données",
-        "migrate":"immigrer"
+        "resetDatabase": "Réinitialiser la Base de Données",
+        "migrate": "migrer"
     },
     "home": {
         "title": "Aperçu du Tableau de Bord",
         "quickActions": "Actions Rapides",
         "stats": {
-            "dailyMessages": "Messages quotidiens",
-            "conversionRate": "Taux de conversion",
-            "trafficVolume": " Volume de trafic"
+            "dailyMessages": "Messages Quotidiens",
+            "conversionRate": "Taux de Conversion",
+            "trafficVolume": "Volume de Trafic"
         },
         "features": {
             "qrScanner": {
                 "title": "Scanner QR",
-                "description": "Connecter votre compte WhatsApp"
+                "description": "Connectez votre compte WhatsApp"
             },
             "mediaUpload": {
-                "title": "Télécharger Médias",
-                "description": "Télécharger des images, audio et messages"
+                "title": "Téléchargement Média",
+                "description": "Téléchargez des images, audio et messages"
             },
             "excelImport": {
-                "title": "Importer Excel",
-                "description": "Importer des données depuis des fichiers Excel"
+                "title": "Import Excel",
+                "description": "Importez des données depuis des fichiers Excel"
             }
         }
     },
@@ -47,8 +47,9 @@
             "description": "Vous pouvez maintenant envoyer des messages et des médias"
         },
         "scanning": {
-            "title": "Scanner le Code QR avec WhatsApp",
-            "description": "Ouvrez WhatsApp sur votre téléphone et scannez ce code QR pour vous connecter"
+            "title": "Scannez le Code QR avec WhatsApp",
+            "description": "Ouvrez WhatsApp sur votre téléphone et scannez ce code QR pour vous connecter",
+            "qrCodeAlt": "Code QR"
         },
         "waiting": {
             "checking": "Vérification du statut WhatsApp...",
@@ -56,7 +57,7 @@
         }
     },
     "phoneNumbers": {
-        "title": "Filtrer par date",
+        "title": "Numéros de Téléphone",
         "filters": {
             "startDate": "Date de Début",
             "endDate": "Date de Fin",
@@ -76,7 +77,7 @@
             "page": "Page {{current}} sur {{total}}"
         },
         "deleteConfirmation": {
-            "title": "Confirmation de suppression",
+            "title": "Confirmation de Suppression",
             "message": "Êtes-vous sûr de vouloir supprimer {{count}} numéro(s) ?"
         },
         "deleteSelected": "Supprimer"
@@ -84,59 +85,59 @@
     "upload": {
         "images": {
             "title": "Images",
-            "dropzone": "Déposez des images ici ou cliquez pour sélectionner"
+            "dropzone": "Déposez les images ici ou cliquez pour sélectionner"
         },
         "audio": {
-            "title": "Fichiers audio",
-            "dropzone": "Déposez des fichiers audio ici ou cliquez pour sélectionner"
+            "title": "Fichiers Audio",
+            "dropzone": "Déposez les fichiers audio ici ou cliquez pour sélectionner"
         },
         "videos": {
             "title": "Vidéos",
-            "dropzone": "Déposez des fichiers vidéo ici ou cliquez pour sélectionner"
+            "dropzone": "Déposez les vidéos ici ou cliquez pour sélectionner"
         },
         "documents": {
             "title": "Documents",
-            "dropzone": "Déposez des documents ici ou cliquez pour sélectionner (PDF, Word, Excel, fichiers texte)"
+            "dropzone": "Déposez les documents ici ou cliquez pour sélectionner (PDF, Word, Excel, fichiers texte)"
         },
         "messages": {
             "title": "Messages",
             "placeholder": "Tapez votre message..."
         },
         "queue": {
-            "title": "File d'attente (Glissez pour réorganiser)",
-            "message": "Message texte",
+            "title": "File de Téléchargement (Glissez pour Réorganiser)",
+            "message": "Message Texte",
             "image": "Image",
             "audio": "Audio",
             "video": "Vidéo",
             "document": "Document",
-            "removeItem": "Retirer de la file d'attente",
-            "empty": "Votre file d'attente est vide",
+            "removeItem": "Retirer de la file",
+            "empty": "Votre file de téléchargement est vide",
             "media": "Légende"
         },
+        "sendQueue": "Télécharger les médias",
         "submit": "Soumettre",
         "add": "Ajouter",
         "caption": "Légende",
-        "sendQueue": "Téléverser les médias",
         "loading": "Chargement...",
-        "selectAll": "Tout sélectionner",
-        "deleteSelected": "Supprimer la sélection",
-        "addSelectedToQueue": "Ajouter la sélection à la file d'attente"
+        "selectAll": "Tout Sélectionner",
+        "deleteSelected": "Supprimer Sélectionnés",
+        "addSelectedToQueue": "Ajouter Sélectionnés à la File"
     },
     "dataImport": {
-        "importPhoneNumbers": "Importer des numéros de téléphone",
+        "importPhoneNumbers": "Importer les Numéros de Téléphone",
         "dropExcelFile": "Déposez le fichier Excel ici ou cliquez pour sélectionner",
-        "addNumberManually": "Ajouter un numéro manuellement",
+        "addNumberManually": "Ajouter un Numéro Manuellement",
         "enterPhoneNumber": "Entrez le numéro de téléphone",
-        "numbersPreview": "Aperçu des numéros",
+        "numbersPreview": "Aperçu des Numéros",
         "number": "Numéro",
         "action": "Action",
-        "saveToDatabase": "Enregistrer dans la base de données",
+        "saveToDatabase": "Sauvegarder en Base de Données",
         "resetDatabase": "Réinitialiser la Base de Données"
     },
     "resetDatabase": {
         "title": "Réinitialiser la Base de Données",
-        "message": "Êtes-vous sûr de vouloir réinitialiser la base de données? Cette action supprimera tous les numéros de téléphone et ne peut pas être annulée.",
-        "confirm": "Réinitialiser",
+        "message": "Êtes-vous sûr de vouloir réinitialiser la base de données ? Cela supprimera tous les numéros de téléphone et ne peut pas être annulé.",
+        "confirm": "Réinitialiser la Base de Données",
         "cancel": "Annuler"
     },
     "notifications": {
@@ -144,7 +145,7 @@
             "connected": "WhatsApp connecté avec succès !",
             "messageSent": "Message envoyé avec succès",
             "numberAdded": "Numéro ajouté avec succès",
-            "numbersSaved": "Numéros de téléphone enregistrés dans la base de données",
+            "numbersSaved": "Numéros de téléphone sauvegardés en base de données",
             "databaseReset": "Base de données réinitialisée avec succès",
             "mediaUploaded": "Média téléchargé avec succès",
             "mediaAdded": "Média ajouté avec succès",
@@ -165,7 +166,7 @@
         }
     },
     "chart": {
-        "title": "Messages par heure",
+        "title": "Messages par Heure",
         "timeRange": {
             "6hours": "6 Heures",
             "12hours": "12 Heures",
@@ -173,31 +174,106 @@
         },
         "noData": "Aucune donnée de message disponible",
         "noDataDescription": "Les messages apparaîtront ici lorsqu'ils seront envoyés",
-        "messagesPerHour": "Messages par heure",
+        "messagesPerHour": "Messages par Heure",
         "messages": "messages"
     },
     "dashboard": {
-        "overview": "Vue d'ensemble du tableau de bord"
+        "overview": "Aperçu du Tableau de Bord"
     },
     "auth": {
         "title": "Entrez la Clé de Licence",
         "placeholder": "Votre clé de licence",
         "submit": "Soumettre",
         "verifying": "Vérification…",
-        "error": "Clé de licence invalide ou déjà utilisée",
+        "error": "Clé de licence invalide ou utilisée",
         "instructions": "Veuillez entrer une clé de licence valide pour continuer."
     },
     "logout": {
-    "confirmTitle": "Confirmer la déconnexion",
-     "sensitiveKeyWarning": "Ceci est votre clé de licence. Veuillez la sauvegarder pour une utilisation future."
-  },
-  "common": {
-    "cancel": "Annuler",
-    "confirm": "Confirmer",
-    "copy": "Copier"
-  },
-  "keyReset": {
-    "successMessage": "La clé de licence a été réinitialisée avec succès",
-    "errorMessage": "Échec de la réinitialisation de la clé de licence. Veuillez réessayer."
-  }
+        "confirmTitle": "Confirmer la Déconnexion",
+        "sensitiveKeyWarning": "Ceci est votre clé de licence. Veuillez la sauvegarder pour une utilisation future."
+    },
+    "common": {
+        "cancel": "Annuler",
+        "confirm": "Confirmer",
+        "copy": "Copier dans le presse-papiers"
+    },
+    "keyReset": {
+        "successMessage": "La clé de licence a été réinitialisée avec succès",
+        "errorMessage": "Échec de la réinitialisation de la clé de licence. Veuillez réessayer."
+    },
+    "whatsappSender": {
+        "title": "Expéditeur WhatsApp en Masse",
+        "sections": {
+            "uploadNumbers": "📱 Télécharger les Numéros",
+            "numbersStatus": "📊 Numéros & Statut",
+            "mediaMessages": "📎 Médias & Messages"
+        },
+        "upload": {
+            "csvExcelLabel": "Télécharger un Fichier CSV/Excel",
+            "csvDescription": "Prend en charge les fichiers CSV avec les numéros de téléphone dans la première colonne",
+            "manualEntryLabel": "Saisie Manuelle",
+            "manualEntryPlaceholder": "Entrez les numéros (un par ligne ou séparés par des virgules)\nExemple :\n1234567890\n0987654321\n+1 555-123-4567"
+        },
+        "buttons": {
+            "resetAll": "Tout Réinitialiser",
+            "addNumbers": "Ajouter des Numéros",
+            "startBulkSending": "Commencer l'Envoi en Masse",
+            "stopSending": "Arrêter l'Envoi"
+        },
+        "stats": {
+            "totalNumbers": "Total des Numéros",
+            "progress": "Progression",
+            "sent": "envoyé"
+        },
+        "mediaTypes": {
+            "image": "Image",
+            "video": "Vidéo",
+            "audio": "Audio",
+            "document": "Document",
+            "text": "Texte"
+        },
+        "queue": {
+            "title": "File d'Envoi"
+        },
+        "instructions": {
+            "title": "📋 Ordre d'Envoi :",
+            "description": "Les médias seront envoyés dans l'ordre affiché ci-dessus. Glissez les éléments pour réorganiser."
+        },
+        "status": {
+            "bulkSendingInProgress": "Envoi en masse en cours...",
+            "of": "sur",
+            "completed": "terminé",
+            "keepAppOpen": "Veuillez garder l'application ouverte pendant le processus d'envoi."
+        },
+        "empty": {
+            "noNumbers": "Aucun numéro téléchargé pour le moment",
+            "noNumbersDescription": "Téléchargez un fichier CSV ou entrez les numéros manuellement",
+            "noMedia": "Aucun média ajouté pour le moment",
+            "noMediaDescription": "Ajoutez des messages texte, images, vidéos ou documents"
+        },
+        "alerts": {
+            "numbersAdded": "{{count}} numéros ajoutés depuis le fichier",
+            "noValidNumbers": "Aucun numéro de téléphone valide trouvé dans le fichier",
+            "fileReadError": "Erreur de lecture du fichier. Veuillez vérifier le format du fichier.",
+            "enterValidNumbers": "Veuillez entrer des numéros de téléphone valides"
+        },
+        "mediaUpload": {
+            "addText": "Ajouter du Texte",
+            "addImage": "Ajouter une Image",
+            "addVideo": "Ajouter une Vidéo",
+            "addAudio": "Ajouter de l'Audio",
+            "addDocument": "Ajouter un Document",
+            "selectFile": "Sélectionner un fichier {{type}}",
+            "preview": "Aperçu :",
+            "captionOptional": "Légende (optionnelle)",
+            "captionPlaceholder": "Ajouter une légende...",
+            "textPlaceholder": "Entrez votre message texte...",
+            "processing": "Traitement...",
+            "fileRequired": "Veuillez sélectionner un fichier",
+            "textRequired": "Veuillez entrer du contenu texte"
+        },
+        "safety": {
+            "openChatsWarning": "Pour éviter le blocage de votre compte WhatsApp, il est recommandé d'avoir déjà des discussions ouvertes avec les numéros ciblés."
+        }
+    }
 }

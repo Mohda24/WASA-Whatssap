@@ -8,7 +8,6 @@
         "phoneNumbers": "History",
         "logout": "Logout",
         "whatssapSender": "Whatsapp Sender",
-
         "logoutModal": {
             "title": "Confirm Logout",
             "message": "Are you sure you want to logout? This will disconnect your WhatsApp session.",
@@ -16,7 +15,7 @@
             "confirm": "Logout"
         },
         "resetDatabase": "Reset Database",
-        "migrate":"migrate"
+        "migrate": "migrate"
     },
     "home": {
         "title": "Dashboard Overview",
@@ -24,7 +23,7 @@
         "stats": {
             "dailyMessages": "Daily Messages",
             "conversionRate": "Conversion Rate",
-            "trafficVolume": "Volume of Traffic"
+            "trafficVolume": "Volume of Traffic"
         },
         "features": {
             "qrScanner": {
@@ -182,24 +181,99 @@
         "overview": "Dashboard Overview"
     },
     "auth": {
-    "title": "Enter License Key",
-    "placeholder": "Your license key",
-    "submit": "Submit",
-    "verifying": "Verifying…",
-    "error": "Invalid or used license key",
-    "instructions": "Please enter a valid license key to continue."
+        "title": "Enter License Key",
+        "placeholder": "Your license key",
+        "submit": "Submit",
+        "verifying": "Verifying…",
+        "error": "Invalid or used license key",
+        "instructions": "Please enter a valid license key to continue."
     },
     "logout": {
-    "confirmTitle": "Confirm Logout",
-    "sensitiveKeyWarning": "This is your license key. Please save it for future use."
-  },
-  "common": {
-    "cancel": "Cancel",
-    "confirm": "Confirm",
-    "copy": "Copy to clipboard"
-  },
-  "keyReset": {
-    "successMessage": "License key has been reset successfully",
-    "errorMessage": "Failed to reset the license key. Please try again."
-  }
+        "confirmTitle": "Confirm Logout",
+        "sensitiveKeyWarning": "This is your license key. Please save it for future use."
+    },
+    "common": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "copy": "Copy to clipboard"
+    },
+    "keyReset": {
+        "successMessage": "License key has been reset successfully",
+        "errorMessage": "Failed to reset the license key. Please try again."
+    },
+    "whatsappSender": {
+        "title": "WhatsApp Bulk Sender",
+        "sections": {
+            "uploadNumbers": "📱 Upload Numbers",
+            "numbersStatus": "📊 Numbers & Status",
+            "mediaMessages": "📎 Media & Messages"
+        },
+        "upload": {
+            "csvExcelLabel": "Upload CSV/Excel File",
+            "csvDescription": "Supports CSV files with phone numbers in the first column",
+            "manualEntryLabel": "Manual Entry",
+            "manualEntryPlaceholder": "Enter numbers (one per line or comma separated)\nExample:\n1234567890\n0987654321\n+1 555-123-4567"
+        },
+        "buttons": {
+            "resetAll": "Reset All",
+            "addNumbers": "Add Numbers",
+            "startBulkSending": "Start Bulk Sending",
+            "stopSending": "Stop Sending"
+        },
+        "stats": {
+            "totalNumbers": "Total Numbers",
+            "progress": "Progress",
+            "sent": "sent"
+        },
+        "mediaTypes": {
+            "image": "Image",
+            "video": "Video", 
+            "audio": "Audio",
+            "document": "Document",
+            "text": "Text"
+        },
+        "queue": {
+            "title": "Sending Queue"
+        },
+        "instructions": {
+            "title": "📋 Sending Order:",
+            "description": "Media will be sent in the order shown above. Drag items to reorder."
+        },
+        "status": {
+            "bulkSendingInProgress": "Bulk sending in progress...",
+            "of": "of",
+            "completed": "completed",
+            "keepAppOpen": "Please keep the application open during the sending process."
+        },
+        "empty": {
+            "noNumbers": "No numbers uploaded yet",
+            "noNumbersDescription": "Upload a CSV file or enter numbers manually",
+            "noMedia": "No media added yet",
+            "noMediaDescription": "Add text messages, images, videos, or documents"
+        },
+        "alerts": {
+            "numbersAdded": "Added {{count}} numbers from file",
+            "noValidNumbers": "No valid phone numbers found in the file",
+            "fileReadError": "Error reading file. Please check the file format.",
+            "enterValidNumbers": "Please enter valid phone numbers"
+        },
+        "mediaUpload": {
+            "addText": "Add Text",
+            "addImage": "Add Image", 
+            "addVideo": "Add Video",
+            "addAudio": "Add Audio",
+            "addDocument": "Add Document",
+            "selectFile": "Select {{type}} file",
+            "preview": "Preview:",
+            "captionOptional": "Caption (optional)",
+            "captionPlaceholder": "Add a caption...",
+            "textPlaceholder": "Enter your text message...",
+            "processing": "Processing...",
+            "fileRequired": "Please select a file",
+            "textRequired": "Please enter text content"
+        },
+"safety": {
+    "openChatsWarning": "To avoid blocking your WhatsApp account, it's recommended to have chats already open with the target numbers."
+}
+    }
 }

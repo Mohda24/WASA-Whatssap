@@ -2,13 +2,36 @@ import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('api', {
   receive: (channel, func) => {
-    const validChannels = ['qr', 'ready', 'authenticated', 'whatsapp-error', 'connection-status','new-message']
+    const validChannels = [
+      'qr', 
+      'ready', 
+      'authenticated', 
+      'whatsapp-error', 
+      'connection-status',
+      'new-message',
+      'number-status-update',
+      'bulk-sending-complete',
+      'bulk-sending-error' // Added this missing channel
+    ]
     if (validChannels.includes(channel)) {
+      // Remove existing listeners to prevent duplicates
+      ipcRenderer.removeAllListeners(channel);
       ipcRenderer.on(channel, (_, ...args) => func(...args))
     }
   },
+  
   removeListener: (channel, func) => {
-    const validChannels = ['qr', 'ready', 'authenticated', 'whatsapp-error', 'connection-status', 'new-message']
+    const validChannels = [
+      'qr', 
+      'ready', 
+      'authenticated', 
+      'whatsapp-error', 
+      'connection-status', 
+      'new-message',
+      'number-status-update',
+      'bulk-sending-complete',
+      'bulk-sending-error'
+    ]
     if (validChannels.includes(channel)) {
       ipcRenderer.removeListener(channel, func)
     }
@@ -38,19 +61,26 @@ contextBridge.exposeInMainWorld('api', {
             total: 0
         }
     }
-},
+  },
+  
   resetPhoneNumbers: () => {
     return ipcRenderer.invoke('resetPhoneNumbers')
   },
+  
   resetPhoneNumberById: (id) => {
     return ipcRenderer.invoke('resetPhoneNumberById', id)
   },
+  
   getExistingMedia: () => ipcRenderer.invoke('get-existing-media'),
-  // Add to your existing contextBridge.exposeInMainWorld
+  
   logoutWhatsApp: () => ipcRenderer.invoke('logout-whatsapp'),
+  
   getHourlyStats: (hours) => ipcRenderer.invoke('get-hourly-stats', hours),
+  
   getDailyStats: (days) => ipcRenderer.invoke('get-daily-stats', days),
-
   
+  // BULK SENDING METHODS
+  startBulkSending: (data) => ipcRenderer.invoke('start-bulk-sending', data),
   
+  stopBulkSending: () => ipcRenderer.invoke('stop-bulk-sending')
 })
