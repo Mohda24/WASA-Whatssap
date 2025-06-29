@@ -85,23 +85,29 @@
     "upload": {
         "images": {
             "title": "Images",
-            "dropzone": "Drop images here or click to select"
+            "dropzone": "Drop images here or click to select",
+            "description": "Upload and manage your images"
         },
         "audio": {
             "title": "Audio Files",
-            "dropzone": "Drop audio files here or click to select"
+            "dropzone": "Drop audio files here or click to select",
+            "description": "Upload and manage your audio files"
         },
         "videos": {
             "title": "Videos",
-            "dropzone": "Drop video files here or click to select"
+            "dropzone": "Drop video files here or click to select",
+            "description": "Upload and manage your video files"
         },
         "documents": {
             "title": "Documents",
-            "dropzone": "Drop documents here or click to select (PDF, Word, Excel, Text files)"
+            "dropzone": "Drop documents here or click to select (PDF, Word, Excel, Text files)",
+            "description": "Upload and manage your documents"
         },
         "messages": {
             "title": "Messages",
-            "placeholder": "Type your message..."
+            "placeholder": "Type your message...",
+            "description": "Create and manage your text messages",
+            "addMessage": "Add Message"
         },
         "queue": {
             "title": "Upload Queue (Drag to Reorder)",

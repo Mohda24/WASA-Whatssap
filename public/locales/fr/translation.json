@@ -85,23 +85,29 @@
     "upload": {
         "images": {
             "title": "Images",
-            "dropzone": "Déposez les images ici ou cliquez pour sélectionner"
+            "dropzone": "Déposez les images ici ou cliquez pour sélectionner",
+            "description": "Téléchargez et gérez vos images"
         },
         "audio": {
             "title": "Fichiers Audio",
-            "dropzone": "Déposez les fichiers audio ici ou cliquez pour sélectionner"
+            "dropzone": "Déposez les fichiers audio ici ou cliquez pour sélectionner",
+            "description": "Téléchargez et gérez vos fichiers audio"
         },
         "videos": {
             "title": "Vidéos",
-            "dropzone": "Déposez les vidéos ici ou cliquez pour sélectionner"
+            "dropzone": "Déposez les vidéos ici ou cliquez pour sélectionner",
+            "description": "Téléchargez et gérez vos vidéos"
         },
         "documents": {
             "title": "Documents",
-            "dropzone": "Déposez les documents ici ou cliquez pour sélectionner (PDF, Word, Excel, fichiers texte)"
+            "dropzone": "Déposez les documents ici ou cliquez pour sélectionner (PDF, Word, Excel, fichiers texte)",
+            "description": "Téléchargez et gérez vos documents"
         },
         "messages": {
             "title": "Messages",
-            "placeholder": "Tapez votre message..."
+            "placeholder": "Tapez votre message...",
+            "description": "Créez et gérez vos messages texte",
+            "addMessage": "Ajouter un Message"
         },
         "queue": {
             "title": "File de Téléchargement (Glissez pour Réorganiser)",

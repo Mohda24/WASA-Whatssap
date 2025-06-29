@@ -2,22 +2,17 @@ import React, { use, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import {
-    QrCodeIcon,
-    ArrowUpTrayIcon,
-    TableCellsIcon,
     Bars3Icon,
     XMarkIcon,
     HomeIcon,
-    PhoneIcon,
     PowerIcon,
     LanguageIcon,
     TrashIcon,
-    HomeModernIcon,
     DevicePhoneMobileIcon,
     CloudArrowUpIcon,
-    NoSymbolIcon,
     ClockIcon,
     PhoneXMarkIcon,
+    PaperAirplaneIcon
 
     
 
@@ -92,7 +87,7 @@ export default function Navigation() {
         },
         {
             name: t('navigation.whatssapSender'),
-            icon: ClockIcon,
+            icon: PaperAirplaneIcon,
             path: '/whatsapp',
             activeColor: 'from-indigo-400 to-blue-500',
             hoverColor: 'hover:text-indigo-500'

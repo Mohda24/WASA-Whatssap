@@ -6,6 +6,7 @@ import logger from './logger'
 import { getMediaData } from '../helpers/loadMedia'
 import { recordMessage } from '../helpers/CountMessages'
 import {incrementConversionCount,incrementTotalMessages,getDailyStats} from "../helpers/StatsHelpers"
+import {getBotStatus} from '../helpers/BotSettingHelper'
 
 export function registerClientEvents(client, mainWindow, db) {
     const mediaData = getMediaData()
@@ -23,6 +24,13 @@ export function registerClientEvents(client, mainWindow, db) {
     })
 
     client.on('message', async msg => {
+         // CHECK BOT STATUS FIRST
+        const botEnabled = getBotStatus(db);
+        console.log('Bot enabled:', botEnabled)
+        if (!botEnabled) {
+            console.log('Bot is disabled. Ignoring message...');
+            return;
+        }
         // Check if the message is from a group
         const isGroup=msg.from.endsWith('@g.us');
         if (isGroup) {

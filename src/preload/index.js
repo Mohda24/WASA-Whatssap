@@ -11,7 +11,8 @@ contextBridge.exposeInMainWorld('api', {
       'new-message',
       'number-status-update',
       'bulk-sending-complete',
-      'bulk-sending-error' // Added this missing channel
+      'bulk-sending-error',// Added this missing channel
+      'bot-status-changed'
     ]
     if (validChannels.includes(channel)) {
       // Remove existing listeners to prevent duplicates
@@ -82,5 +83,9 @@ contextBridge.exposeInMainWorld('api', {
   // BULK SENDING METHODS
   startBulkSending: (data) => ipcRenderer.invoke('start-bulk-sending', data),
   
-  stopBulkSending: () => ipcRenderer.invoke('stop-bulk-sending')
+  stopBulkSending: () => ipcRenderer.invoke('stop-bulk-sending'),
+
+  // Bot status methods
+    getBotStatus: () => ipcRenderer.invoke('get-bot-status'),
+    setBotStatus: (enabled) => ipcRenderer.invoke('set-bot-status', enabled),
 })

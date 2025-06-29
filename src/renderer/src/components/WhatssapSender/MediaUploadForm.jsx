@@ -170,7 +170,7 @@ export const MediaUploadForm = ({ type }) => {
                         </label>
                         <input
                             type="file"
-                            accept={getAcceptTypes()}
+                            accept={type === 'audio' ? 'audio/opus,.opus' : getAcceptTypes()}
                             onChange={handleFileChange}
                             className={`w-full p-2 border rounded-lg ${
                                 darkMode
@@ -204,6 +204,7 @@ export const MediaUploadForm = ({ type }) => {
                                     src={preview} 
                                     className="w-full" 
                                     controls
+                                    
                                 />
                             )}
                             {type === 'document' && (

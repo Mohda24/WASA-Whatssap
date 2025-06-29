@@ -11,8 +11,9 @@ import { registerClientEvents } from './eventHandlers'
 import { readMediaFolder } from '../helpers/readMediaFolder'; // import it
 import { getHourlyStats, resetHourlyStats } from '../helpers/CountMessages'; // import it
 import { getDailyStats, resetStats } from "../helpers/StatsHelpers"
-import {processMediafiles} from '../helpers/ProcecMediaSender'
-import {processBulkSending} from '../helpers/processBulkSending'
+import { processMediafiles } from '../helpers/ProcecMediaSender'
+import { processBulkSending } from '../helpers/processBulkSending'
+import { getBotStatus, setBotStatus } from '../helpers/BotSettingHelper'
 
 
 export function registerIpcHandlers(client, mainWindow, db) {
@@ -188,19 +189,19 @@ export function registerIpcHandlers(client, mainWindow, db) {
                         await client.sendMessage(phoneNumber, item.content)
                     } else if (item.type === 'media') {
                         const media = await MessageMedia.fromFilePath(item.filePath)
-                        
+
                         if (item.caption) {
                             await client.sendMessage(phoneNumber, media, { caption: item.caption })
                         } else {
                             await client.sendMessage(phoneNumber, media)
                         }
-                        
+
                         // Clean up temporary file
                         if (fs.existsSync(item.filePath)) {
                             fs.unlinkSync(item.filePath)
                         }
                     }
-                    
+
                     // Small delay between messages
                     await new Promise(resolve => setTimeout(resolve, 500))
                 } catch (itemError) {
@@ -308,5 +309,28 @@ export function registerIpcHandlers(client, mainWindow, db) {
     });
     // Handle Auth
     // In main process setup
-    
+    // Bot Settings
+    ipcMain.handle('get-bot-status', async () => {
+        try {
+            const status = getBotStatus(db);
+            return { success: true, enabled: status };
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    });
+
+    ipcMain.handle('set-bot-status', async (_e, enabled) => {
+        try {
+            const result = setBotStatus(db, enabled);
+            if (result.success) {
+                // Notify renderer about the change
+                mainWindow.webContents.send('bot-status-changed', enabled);
+                return { success: true, enabled };
+            }
+            return result;
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    });
+
 }

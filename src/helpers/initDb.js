@@ -34,8 +34,8 @@ export function initDatabase() {
             PRIMARY KEY (date, hour)
         )
     `).run();
-// ... existing code ...
-  // stats table for daily statistics 
+    // ... existing code ...
+    // stats table for daily statistics 
     db.prepare(`
         CREATE TABLE IF NOT EXISTS daily_stats (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,6 +45,22 @@ export function initDatabase() {
             UNIQUE(date)
         )
     `).run();
+    // Bot_settings table for bot configuration
+    db.prepare(`
+        CREATE TABLE IF NOT EXISTS bot_settings (
+            id INTEGER PRIMARY KEY,
+            bot_enabled BOOLEAN DEFAULT 1,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`).run();
+
+    // Insert default setting if not exists
+    const checkStmt = db.prepare('SELECT COUNT(*) as count FROM bot_settings');
+    const result = checkStmt.get();
+
+    if (result.count === 0) {
+        const insertStmt = db.prepare('INSERT INTO bot_settings (bot_enabled) VALUES (?)');
+        insertStmt.run(1);
+    }
 
     return db
 }

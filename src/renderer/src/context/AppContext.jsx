@@ -29,6 +29,8 @@ export function AppProvider({ children }) {
     const [videos, setVideos] = useState([]);
     const [documents, setDocuments] = useState([]);
     const [messages, setMessages] = useState(['']);
+    const [activeTab, setActiveTab] = useState('Images');
+
 
     // Phone number states
     const [numbers, setNumbers] = useState([]);
@@ -44,6 +46,12 @@ export function AppProvider({ children }) {
     
     //Chart Messages
     const [chartData, setChartData] = useState(null); 
+    // Bot status state
+    const [botEnabled, setBotEnabled] = useState(true);
+    const [botStatusLoading, setBotStatusLoading] = useState(true);
+
+
+
 
     // set Key
     const setKey = useCallback((key) => {
@@ -299,6 +307,75 @@ export function AppProvider({ children }) {
         };
     }, [images, audios, videos]);
 
+        // Bot status management
+    const fetchBotStatus = useCallback(async () => {
+        try {
+            setBotStatusLoading(true);
+            const result = await window.api.getBotStatus();
+            console.log('Bot status fetched:', result);
+            if (result?.success) {
+                setBotEnabled(result.enabled);
+            }
+        } catch (error) {
+            console.error('Failed to fetch bot status:', error);
+            notify('Failed to fetch bot status', 'error');
+        } finally {
+            setBotStatusLoading(false);
+        }
+    }, [notify]);
+
+    const toggleBotStatus = useCallback(async () => {
+        try {
+            const newStatus = !botEnabled;
+            const result = await window.api.setBotStatus(newStatus);
+            console.log('Bot status updated Is King:', result);
+
+            if (result?.success) {
+                setBotEnabled(newStatus);
+                notify(
+                    newStatus ? 'Bot enabled successfully' : 'Bot disabled successfully',
+                    'success'
+                );
+                return true;
+            } else {
+                notify('Failed to update bot status', 'error');
+                return false;
+            }
+        } catch (error) {
+            console.error('Error toggling bot status:', error);
+            notify('Failed to update bot status', 'error');
+            return false;
+        }
+    }, [botEnabled, notify]);
+
+     // Setup bot status listeners
+    const setupBotStatusListeners = useCallback(() => {
+        if (!window.api) return;
+
+        const handleBotStatusChanged = (enabled) => {
+            setBotEnabled(enabled);
+            notify(
+                enabled ? 'Bot has been enabled' : 'Bot has been disabled',
+                'success'
+            );
+        };
+
+        window.api.receive('bot-status-changed', handleBotStatusChanged);
+
+        return () => {
+            if (window.api.removeListener) {
+                window.api.removeListener('bot-status-changed', handleBotStatusChanged);
+            }
+        };
+    }, [notify]);
+
+    // Initialize bot status
+    useEffect(() => {
+        fetchBotStatus();
+        const cleanup = setupBotStatusListeners();
+        return cleanup;
+    }, [fetchBotStatus, setupBotStatusListeners]);
+
     const value = {
         // Theme and language
         darkMode,
@@ -333,6 +410,8 @@ export function AppProvider({ children }) {
         removeFromQueue,
         reorderQueue,
         clearAllUploads,
+        activeTab,
+        setActiveTab,
 
         // Phone number management
         numbers,
@@ -362,7 +441,13 @@ export function AppProvider({ children }) {
         // login
         isLoggedIn,
         setIsLoggedIn,
-        setKey
+        setKey,
+        // Bot Status
+        botEnabled,
+        setBotEnabled,
+        botStatusLoading,
+        toggleBotStatus,
+        fetchBotStatus,
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
