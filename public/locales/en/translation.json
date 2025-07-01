@@ -3,7 +3,7 @@
         "title": "WASA",
         "home": "Home",
         "qrScanner": "Connected Account",
-        "mediaUpload": "Media Upload",
+        "mediaUpload": "Auto-reply",
         "excelImport": "Excluded Numbers",
         "phoneNumbers": "History",
         "logout": "Logout",
@@ -14,8 +14,8 @@
             "cancel": "Cancel",
             "confirm": "Logout"
         },
-        "resetDatabase": "Reset Database",
-        "migrate": "migrate"
+        "resetDatabase": "Reset",
+        "migrate": "Logout"
     },
     "home": {
         "title": "Dashboard Overview",
@@ -110,7 +110,7 @@
             "addMessage": "Add Message"
         },
         "queue": {
-            "title": "Upload Queue (Drag to Reorder)",
+            "title": "Upload List (Drag to Reorder)",
             "message": "Text Message",
             "image": "Image",
             "audio": "Audio",
@@ -120,7 +120,7 @@
             "empty": "Your upload queue is empty",
             "media": "Caption"
         },
-        "sendQueue": "Upload medias",
+        "sendQueue": "Save",
         "submit": "Submit",
         "add": "Add",
         "caption": "Caption",
@@ -280,6 +280,11 @@
         },
 "safety": {
     "openChatsWarning": "To avoid blocking your WhatsApp account, it's recommended to have chats already open with the target numbers."
-}
+},
+"botStatus": {
+    "title": "WhatsApp Bot",
+    "descriptionOn": "Bot is active and responding to messages",
+    "descriptionOff": "Bot is disabled"
+    }
     }
 }

@@ -1,9 +1,10 @@
+
 {
     "navigation": {
         "title": "WASA",
         "home": "Accueil",
         "qrScanner": "Compte Connecté",
-        "mediaUpload": "Téléchargement Média",
+        "mediaUpload": "Réponse auto",
         "excelImport": "Numéros Exclus",
         "phoneNumbers": "Historique",
         "logout": "Déconnexion",
@@ -14,8 +15,8 @@
             "cancel": "Annuler",
             "confirm": "Déconnexion"
         },
-        "resetDatabase": "Réinitialiser la Base de Données",
-        "migrate": "migrer"
+        "resetDatabase": "Réinitialiser",
+        "migrate": "Déconnexion"
     },
     "home": {
         "title": "Aperçu du Tableau de Bord",
@@ -110,7 +111,7 @@
             "addMessage": "Ajouter un Message"
         },
         "queue": {
-            "title": "File de Téléchargement (Glissez pour Réorganiser)",
+            "title": "Liste d'Upload (Glisser pour Réorganiser)",
             "message": "Message Texte",
             "image": "Image",
             "audio": "Audio",
@@ -120,7 +121,7 @@
             "empty": "Votre file de téléchargement est vide",
             "media": "Légende"
         },
-        "sendQueue": "Télécharger les médias",
+        "sendQueue": "Enregistrer",
         "submit": "Soumettre",
         "add": "Ajouter",
         "caption": "Légende",
@@ -280,6 +281,23 @@
         },
         "safety": {
             "openChatsWarning": "Pour éviter le blocage de votre compte WhatsApp, il est recommandé d'avoir déjà des discussions ouvertes avec les numéros ciblés."
+        },
+        "botStatus": {
+            "title": "Statut du Bot WhatsApp",
+            "descriptionOn": "Le bot est actif et répond aux messages",
+            "descriptionOff": "Le bot est désactivé"
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

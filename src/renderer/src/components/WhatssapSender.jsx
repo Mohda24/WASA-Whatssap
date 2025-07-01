@@ -102,21 +102,29 @@ export const WhatsAppSender = () => {
         }
     };
 
-    const handleManualSubmit = () => {
-        if (manualNumbers.trim()) {
-            const nums = manualNumbers
-                .split(/[\n,;]/)
-                .map(n => n.trim().replace(/\D/g, '')) // Remove non-digits
-                .filter(n => n && n.length >= 10); // Basic validation
-            
-            if (nums.length > 0) {
-                addNumbers(nums);
-                setManualNumbers('');
-            } else {
-                alert(t('whatsappSender.alerts.enterValidNumbers'));
-            }
+const handleManualSubmit = () => {
+    if (manualNumbers.trim()) {
+        const nums = manualNumbers
+            .split(/[\n,;]/)
+            .map(n => n.trim().replace(/\D/g, '')) // Remove non-digits
+            .map(n => {
+                // If number starts with 05, 06, or 07 and is 10 digits
+                if (/^0[5-7]\d{8}$/.test(n)) {
+                    return '212' + n.slice(1); // Replace leading 0 with 212
+                }
+                return n;
+            })
+            .filter(n => n && n.length >= 10); // Basic validation
+
+        if (nums.length > 0) {
+            addNumbers(nums);
+            setManualNumbers('');
+        } else {
+            alert(t('whatsappSender.alerts.enterValidNumbers'));
         }
-    };
+    }
+};
+
 
     const handleDragEnd = (event) => {
         const { active, over } = event;

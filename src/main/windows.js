@@ -28,7 +28,7 @@ export function createMainWindow() {
     const powerSaveId = powerSaveBlocker.start('prevent-display-sleep')
     
     const mainWindow = new BrowserWindow({
-        title: "WhatsApp Auto Smart Assistant 'WASA'",
+        title: "WASA",
         icon: path.join(__dirname, '../../resources/icon.ico'),
         width: 900,
         height: 670,
@@ -45,7 +45,7 @@ export function createMainWindow() {
         }
     })
 
-    mainWindow.setTitle("WhatsApp Auto Smart Assistant 'WASA'")
+    mainWindow.setTitle("WASA")
  
 
     // Create tray icon

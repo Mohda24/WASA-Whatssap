@@ -12,7 +12,8 @@ import {
     CloudArrowUpIcon,
     ClockIcon,
     PhoneXMarkIcon,
-    PaperAirplaneIcon
+    PaperAirplaneIcon,
+    ChatBubbleLeftRightIcon
 
     
 
@@ -66,7 +67,7 @@ export default function Navigation() {
         },
         {
             name: t('navigation.mediaUpload'),
-            icon: CloudArrowUpIcon,
+            icon: ChatBubbleLeftRightIcon,
             path: '/upload',
             activeColor: 'from-blue-400 to-cyan-500',
             hoverColor: 'hover:text-blue-500'
@@ -237,6 +238,22 @@ export default function Navigation() {
                     <PowerIcon className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform duration-300" />
                     <span className="font-medium">{t('navigation.migrate')}</span>
                 </button>
+                 {/* Made By AmdSystems */}
+                <div className={`p-4 text-center flex gap-1 items-center justify-center text-xs ${
+                    darkMode ? 'text-gray-400' : 'text-gray-500'
+                } ${isRTL ? "flex-row-reverse":""}`}>
+                    <p>Powered by</p>
+                    <a
+                        href="https://wa.me/212663092668"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`font-medium hover:underline transition-colors duration-200 ${
+                            darkMode ? 'hover:text-blue-400' : 'hover:text-blue-600'
+                        }`}
+                    >
+                        <span className={`${darkMode ? 'text-blue-400' : 'text-blue-500'}`}>Amd</span>Systems
+                    </a>
+                </div>
 
                 </div>
             </div>

@@ -105,7 +105,13 @@ export default function UploadData() {
     }, [setDocuments]);
 
     const { getRootProps: getImageProps, getInputProps: getImageInputProps } = useDropzone({ onDrop: onDropImages, accept: { 'image/*': [] } })
-    const { getRootProps: getAudioProps, getInputProps: getAudioInputProps } = useDropzone({ onDrop: onDropAudios, accept: { 'audio/*': [] } })
+    const { getRootProps: getAudioProps, getInputProps: getAudioInputProps } = useDropzone({
+        onDrop: onDropAudios,
+        accept: {
+            'audio/opus': ['.opus']
+        }
+    });
+
     const { getRootProps: getVideoProps, getInputProps: getVideoInputProps } = useDropzone({
         onDrop: onDropVideos,
         accept: { 'video/*': [] },
@@ -472,18 +478,17 @@ export default function UploadData() {
     // Replace the input fields with textareas in your JSX
     return (
         <>
-         
-            <div className="flex h-full gap-4 p-6 overflow-x-hidden" 
-            >
-               
-                {/* Left Panel - Dynamic Content Tabs */}
-                <div className="w-2/3 flex flex-col h-screen">
-                <BotToggleSwitch/>
-                
 
-                    <div className={`flex mt-1 space-x-0 mb-6 border-b overflow-x-auto scrollbar-hide ${
-                        darkMode ? 'border-gray-600' : 'border-gray-200'
-                    }`}>
+            <div className="flex h-full gap-4 p-6 overflow-x-hidden"
+            >
+
+                {/* Left Panel - Dynamic Content Tabs */}
+                <div className="w-2/3 flex flex-col h-[calc(100vh-56px)]">
+                    <BotToggleSwitch />
+
+
+                    <div className={`flex mt-1 space-x-0 mb-6 border-b overflow-x-auto scrollbar-hide ${darkMode ? 'border-gray-600' : 'border-gray-200'
+                        }`}>
                         {tabConfig.map(({ name, icon: Icon, title }) => (
                             <button
                                 key={name}
@@ -491,12 +496,12 @@ export default function UploadData() {
                                 className={`group relative flex items-center gap-2 px-6 py-3 text-sm font-medium whitespace-nowrap overflow-hidden
                                     transition-all duration-200 ease-in-out
                                     ${activeTab === name
-                                        ? `${darkMode 
-                                            ? 'text-blue-400 bg-blue-900/30 shadow-lg' 
+                                        ? `${darkMode
+                                            ? 'text-blue-400 bg-blue-900/30 shadow-lg'
                                             : 'text-blue-600 bg-blue-50/80 shadow-md'
                                         }`
-                                        : `${darkMode 
-                                            ? 'text-gray-300 hover:text-white hover:bg-gray-700/60' 
+                                        : `${darkMode
+                                            ? 'text-gray-300 hover:text-white hover:bg-gray-700/60'
                                             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                                         }`
                                     }`}
@@ -504,8 +509,8 @@ export default function UploadData() {
                                 <Icon className={`h-5 w-5 transition-colors duration-200
                                     ${activeTab === name
                                         ? `${darkMode ? 'text-blue-400' : 'text-blue-600'}`
-                                        : `${darkMode 
-                                            ? 'text-gray-400 group-hover:text-gray-200' 
+                                        : `${darkMode
+                                            ? 'text-gray-400 group-hover:text-gray-200'
                                             : 'text-gray-500 group-hover:text-gray-700'
                                         }`
                                     }`}
@@ -523,12 +528,12 @@ export default function UploadData() {
                                 {/* Subtle gradient background on hover */}
                                 <div className={`absolute inset-0 rounded-t-lg transition-opacity duration-200
                                     ${activeTab === name
-                                        ? `${darkMode 
-                                            ? 'bg-gradient-to-b from-blue-800/40 to-transparent opacity-100' 
+                                        ? `${darkMode
+                                            ? 'bg-gradient-to-b from-blue-800/40 to-transparent opacity-100'
                                             : 'bg-gradient-to-b from-blue-50/90 to-transparent opacity-100'
                                         }`
-                                        : `${darkMode 
-                                            ? 'bg-gradient-to-b from-gray-700/50 to-transparent opacity-0 group-hover:opacity-100' 
+                                        : `${darkMode
+                                            ? 'bg-gradient-to-b from-gray-700/50 to-transparent opacity-0 group-hover:opacity-100'
                                             : 'bg-gradient-to-b from-gray-50/70 to-transparent opacity-0 group-hover:opacity-100'
                                         }`
                                     }`}
@@ -715,6 +720,9 @@ export default function UploadData() {
                                                 </p>
                                                 <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
                                                     or click to browse
+                                                </p>
+                                                <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
+                                                    Max size: 10MB
                                                 </p>
                                             </div>
                                         </div>
@@ -992,6 +1000,10 @@ export default function UploadData() {
                                                 <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
                                                     or click to browse
                                                 </p>
+                                                <p className="text-xs mt-1 text-gray-400 dark:text-gray-500">
+                                                    Supported formats: <span className="font-medium text-purple-600 dark:text-purple-400">Opus</span>
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>

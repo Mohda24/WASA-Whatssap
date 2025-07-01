@@ -11,7 +11,6 @@ import { registerClientEvents } from './eventHandlers'
 import { readMediaFolder } from '../helpers/readMediaFolder'; // import it
 import { getHourlyStats, resetHourlyStats } from '../helpers/CountMessages'; // import it
 import { getDailyStats, resetStats } from "../helpers/StatsHelpers"
-import { processMediafiles } from '../helpers/ProcecMediaSender'
 import { processBulkSending } from '../helpers/processBulkSending'
 import { getBotStatus, setBotStatus } from '../helpers/BotSettingHelper'
 
