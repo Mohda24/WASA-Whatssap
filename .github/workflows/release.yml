@@ -14,7 +14,7 @@ jobs:
     
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, windows-latest]  # ✅ Removed ubuntu-latest
 
     steps:
       - name: Check out Git repository
@@ -25,7 +25,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20  # ✅ Updated from 18 to 20
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
