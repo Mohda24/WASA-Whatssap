@@ -1,0 +1,56 @@
+name: Release
+
+# Only run on push to mohda branch or when manually triggered
+on:
+  push:
+    branches:
+      - mohda
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          # GitHub token, automatically provided to the action
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          release: ${{ github.ref == 'refs/heads/mohda' || startsWith(github.ref, 'refs/tags/v') }}
+          
+          # Optional: skip build step if you build in a previous step
+          skip_build: true
+          
+          # Optional: Maximum number of attempts for completing the build
+          max_attempts: 3
+
+        env:
+          # For auto-updater
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
