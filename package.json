@@ -30,6 +30,8 @@
     "@tailwindcss/postcss": "^4.1.4",
     "better-sqlite3": "^11.9.1",
     "chart.js": "^4.4.9",
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.6.2",
     "firebase": "^11.9.1",
     "fluent-ffmpeg": "^2.1.3",
     "i18next": "^25.0.1",
@@ -45,7 +47,7 @@
     "react-i18next": "^15.5.1",
     "react-router-dom": "^7.5.1",
     "tailwindcss": "^4.1.4",
-    "whatsapp-web.js": "^1.33.1",
+    "whatsapp-web.js": "^1.33.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
@@ -70,6 +72,13 @@
     "productName": "WASA",
     "win": {
       "icon": "resources/icon.ico"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Mohda24",
+        "repo": "WASA-Project"
+      }
+    ]
   }
 }

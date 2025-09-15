@@ -8,6 +8,7 @@ import { registerIpcHandlers } from './ipcHandlers'
 import { ensureMediaFoldersExist } from '../helpers/folderSetup'
 import { initDatabase } from '../helpers/initDb'
 import {loadMediaData} from '../helpers/loadMedia'
+import { setupAutoUpdater } from './SetupAutoUpdater'
 import path from 'path'
 
 
@@ -25,6 +26,17 @@ app.whenReady().then(() => {
   createAppMenu(mainWindow)
   registerClientEvents(client, mainWindow, db)
   registerIpcHandlers(client, mainWindow, db)
+    // ADD AUTO-UPDATER INITIALIZATION HERE
+  const updater = setupAutoUpdater(mainWindow)
+    // Check for updates on startup (after 3 seconds delay)
+  setTimeout(() => {
+    updater.checkForUpdates()
+  }, 3000)
+
+  // Check for updates every hour
+  setInterval(() => {
+    updater.checkForUpdates()
+  }, 60 * 60 * 1000) // 1 hour in milliseconds
 
   client.initialize()
 
