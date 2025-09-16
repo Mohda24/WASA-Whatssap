@@ -27,9 +27,9 @@ export function setupAutoUpdater(mainWindow) {
     autoUpdater.autoInstallOnAppQuit = false
 
     // Development mode setup
-    if (process.env.NODE_ENV === 'development') {
-        autoUpdater.forceDevUpdateConfig = true
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //     autoUpdater.forceDevUpdateConfig = true
+    // }
 
     // Set up event listeners with better error handling
     autoUpdater.on('checking-for-update', () => {
