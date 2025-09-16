@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, BrowserWindow } from 'electron'  // ✅ Add BrowserWindow import
 import { optimizer } from '@electron-toolkit/utils'
 import { createMainWindow } from './windows'
 import { createAppMenu } from './menu'
@@ -7,13 +7,9 @@ import { registerClientEvents } from './eventHandlers'
 import { registerIpcHandlers } from './ipcHandlers'
 import { ensureMediaFoldersExist } from '../helpers/folderSetup'
 import { initDatabase } from '../helpers/initDb'
-import {loadMediaData} from '../helpers/loadMedia'
+import { loadMediaData } from '../helpers/loadMedia'
 import { setupAutoUpdater } from './SetupAutoUpdater'
 import path from 'path'
-
-
-
-
 
 app.whenReady().then(() => {
   ensureMediaFoldersExist()
@@ -26,17 +22,27 @@ app.whenReady().then(() => {
   createAppMenu(mainWindow)
   registerClientEvents(client, mainWindow, db)
   registerIpcHandlers(client, mainWindow, db)
-    // ADD AUTO-UPDATER INITIALIZATION HERE
-  const updater = setupAutoUpdater(mainWindow)
-    // Check for updates on startup (after 3 seconds delay)
-  setTimeout(() => {
-    updater.checkForUpdates()
-  }, 3000)
+  
+  // ✅ IMPROVED: Better auto-updater initialization with error handling
+  try {
+    const updater = setupAutoUpdater(mainWindow)
+    
+    // Check for updates on startup (after 5 seconds delay)
+    setTimeout(() => {
+      updater.checkForUpdates().catch(error => {
+        console.error('Initial update check failed:', error)
+      })
+    }, 5000)
 
-  // Check for updates every hour
-  setInterval(() => {
-    updater.checkForUpdates()
-  }, 60 * 60 * 1000) // 1 hour in milliseconds
+    // Check for updates every hour
+    setInterval(() => {
+      updater.checkForUpdates().catch(error => {
+        console.error('Periodic update check failed:', error)
+      })
+    }, 60 * 60 * 1000)
+  } catch (error) {
+    console.error('Failed to setup auto-updater:', error)
+  }
 
   client.initialize()
 
