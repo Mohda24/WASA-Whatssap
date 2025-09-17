@@ -39,6 +39,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run build:win
+
+      - name: List dist files for debugging
+        run: |
+          echo "Files in dist directory:"
+          Get-ChildItem -Path dist -Recurse | Format-Table Name, Length, LastWriteTime
           
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -53,9 +58,26 @@ jobs:
             - Version: ${{ steps.package-version.outputs.VERSION }}
           files: |
             dist/*.exe
+            dist/*.blockmap
+            dist/latest.yml
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          # mohda
+      - name: Verify required files exist
+        run: |
+          echo "Checking for required auto-update files..."
+          if (!(Test-Path "dist\latest.yml")) {
+            Write-Error "latest.yml not found! Auto-updates will not work."
+            exit 1
+          }
+          
+          $blockmapFiles = Get-ChildItem -Path dist -Filter "*.blockmap"
+          if ($blockmapFiles.Count -eq 0) {
+            Write-Warning "No .blockmap files found. Delta updates may not work optimally."
+          }
+          
+          echo "Auto-update files verification complete."
+
+        
