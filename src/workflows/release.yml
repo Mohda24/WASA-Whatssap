@@ -1,0 +1,59 @@
+name: Release
+on:
+  push:
+    branches:
+      - AutoUpdate
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  release:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          ref: AutoUpdate  # Explicitly checkout the AutoUpdate branch
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Get package version
+        id: package-version
+        run: |
+          $version = (Get-Content package.json | ConvertFrom-Json).version
+          echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+          echo "Version: $version"
+
+      - name: Build and release Electron app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build:win
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.package-version.outputs.VERSION }}-auto
+          name: Auto Release v${{ steps.package-version.outputs.VERSION }}
+          body: |
+            Automatic release from AutoUpdate branch
+            
+            Changes:
+            - Auto-generated from branch: AutoUpdate
+            - Version: ${{ steps.package-version.outputs.VERSION }}
+          files: |
+            dist/*.exe
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

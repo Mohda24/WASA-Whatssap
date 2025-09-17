@@ -13,6 +13,7 @@ import { getHourlyStats, resetHourlyStats } from '../helpers/CountMessages'; // 
 import { getDailyStats, resetStats } from "../helpers/StatsHelpers"
 import { processBulkSending } from '../helpers/processBulkSending'
 import { getBotStatus, setBotStatus } from '../helpers/BotSettingHelper'
+import { autoUpdater } from 'electron-updater' // ADD THIS IMPORT
 
 
 export function registerIpcHandlers(client, mainWindow, db) {
@@ -332,4 +333,37 @@ export function registerIpcHandlers(client, mainWindow, db) {
         }
     });
 
+    // Setup Auto Updater
+    // ADD THESE AUTO-UPDATER HANDLERS
+    ipcMain.handle('check-for-updates', async () => {
+        try {
+            const result = await autoUpdater.checkForUpdates()
+            return { success: true, updateInfo: result?.updateInfo }
+        } catch (error) {
+            console.error('Error checking for updates:', error)
+            return { success: false, error: error.message }
+        }
+    })
+
+    ipcMain.handle('download-update', async () => {
+        try {
+            await autoUpdater.downloadUpdate()
+            return { success: true }
+        } catch (error) {
+            console.error('Error downloading update:', error)
+            return { success: false, error: error.message }
+        }
+    })
+
+    ipcMain.handle('quit-and-install', async () => {
+        try {
+            autoUpdater.quitAndInstall(false, true)
+            return { success: true }
+        } catch (error) {
+            console.error('Error installing update:', error)
+            return { success: false, error: error.message }
+        }
+    })
+
 }
+

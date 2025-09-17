@@ -12,7 +12,14 @@ contextBridge.exposeInMainWorld('api', {
       'number-status-update',
       'bulk-sending-complete',
       'bulk-sending-error',// Added this missing channel
-      'bot-status-changed'
+      'bot-status-changed',
+      // ADD THESE AUTO-UPDATER CHANNELS
+      'update-available',
+      'update-not-available',
+      'update-downloaded',
+      'update-error',
+      'update-download-progress',
+      'update-status'
     ]
     if (validChannels.includes(channel)) {
       // Remove existing listeners to prevent duplicates
@@ -31,7 +38,14 @@ contextBridge.exposeInMainWorld('api', {
       'new-message',
       'number-status-update',
       'bulk-sending-complete',
-      'bulk-sending-error'
+      'bulk-sending-error',
+      // ADD THESE AUTO-UPDATER CHANNELS
+      'update-available',
+      'update-not-available',
+      'update-downloaded',
+      'update-error',
+      'update-download-progress',
+      'update-status'
     ]
     if (validChannels.includes(channel)) {
       ipcRenderer.removeListener(channel, func)
@@ -88,4 +102,13 @@ contextBridge.exposeInMainWorld('api', {
   // Bot status methods
     getBotStatus: () => ipcRenderer.invoke('get-bot-status'),
     setBotStatus: (enabled) => ipcRenderer.invoke('set-bot-status', enabled),
+    // Auto-updater methods
+    // ADD THESE AUTO-UPDATER METHODS
+  checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
+  downloadUpdate: () => ipcRenderer.invoke('download-update'),
+  quitAndInstall: () => ipcRenderer.invoke('quit-and-install'),
 })
+
+
+
+

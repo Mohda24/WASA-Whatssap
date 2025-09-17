@@ -10,9 +10,10 @@ import QRCodeScanner from './components/QRCodeScanner';
 import UploadData from './components/UploadData';
 import DataImport from './components/DataImport';
 import PhoneNumbers from './components/PhoneNumbers';
-import{WhatsAppSender}  from './components/WhatssapSender';
+import { WhatsAppSender } from './components/WhatssapSender';
 import './i18n';
 import { WhatsAppSenderProvider } from './context/WhatssapSenderContext';
+import AutoUpdateModal from './components/AutoUpdateModel';
 
 function AppContentInside() {
     const { isRTL } = useApp();
@@ -22,24 +23,34 @@ function AppContentInside() {
     }, [isRTL]);
 
     return (
-        <Router>
-            <Routes>
-                {/* Public Auth page, no Navigation */}
-                <Route path="/auth" element={<Auth />} />
+        <>
+            <Router>
+                <Routes>
+                    {/* Public Auth page, no Navigation */}
+                    <Route path="/auth" element={<Auth />} />
 
-                {/* All other routes go through ProtectedRoute + Layout */}
-                <Route element={<ProtectedRoute />}>
-                    <Route element={<Layout />}>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/scanner" element={<QRCodeScanner />} />
-                        <Route path="/upload" element={<UploadData />} />
-                        <Route path="/excel" element={<DataImport />} />
-                        <Route path="/numbers" element={<PhoneNumbers />} />
-                        <Route path="/whatsapp" element={<WhatsAppSender />} />
-                    </Route>
-                </Route>
-            </Routes>
-        </Router>
+                    {/* All other routes go through ProtectedRoute + Layout */}
+                    <Route path="/*" element={
+                        <ProtectedRoute>
+                            <WhatsAppSenderProvider>
+                                <Layout>
+                                    <Routes>
+                                        <Route path="/" element={<Home />} />
+                                        <Route path="/qr-scanner" element={<QRCodeScanner />} />
+                                        <Route path="/upload" element={<UploadData />} />
+                                        <Route path="/import" element={<DataImport />} />
+                                        <Route path="/phone-numbers" element={<PhoneNumbers />} />
+                                        <Route path="/whatsapp-sender" element={<WhatsAppSender />} />
+                                    </Routes>
+                                </Layout>
+                            </WhatsAppSenderProvider>
+                        </ProtectedRoute>
+                    } />
+                </Routes>
+            </Router>
+            {/* ADD THE AUTO-UPDATE MODAL HERE */}
+            <AutoUpdateModal />
+        </>
     );
 }
 
@@ -47,7 +58,7 @@ export default function App() {
     return (
         <AppProvider>
             <WhatsAppSenderProvider>
-            <AppContentInside />
+                <AppContentInside />
             </WhatsAppSenderProvider>
         </AppProvider>
     );
