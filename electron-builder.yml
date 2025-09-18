@@ -20,7 +20,7 @@ win:
     - target: nsis
       arch: [x64]
 nsis:
-  artifactName: ${name}-${version}-setup.${ext}
+  artifactName: ${productName}-Setup-${version}.${ext}  # Changed this line
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
