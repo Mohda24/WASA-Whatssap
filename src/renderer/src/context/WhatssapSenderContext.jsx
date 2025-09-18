@@ -32,6 +32,7 @@ export const WhatsAppSenderProvider = ({ children }) => {
             setCurrentSendingId(null);
             alert(`Bulk sending error: ${error}`);
         };
+        // me
 
         // Add event listeners
         if (window.api) {
