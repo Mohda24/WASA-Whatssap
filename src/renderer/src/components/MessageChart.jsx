@@ -6,6 +6,7 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
 
 Chart.register(...registerables);
+// mo
 
 export default function MessageChart() {
     const { darkMode,chartData,setChartData } = useApp();
