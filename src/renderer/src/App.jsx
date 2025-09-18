@@ -30,27 +30,22 @@ function AppContentInside() {
                     <Route path="/auth" element={<Auth />} />
 
                     {/* All other routes go through ProtectedRoute + Layout */}
-                    <Route path="/*" element={
-                        <ProtectedRoute>
-                            <WhatsAppSenderProvider>
-                                <Layout>
-                                    <Routes>
-                                        <Route path="/" element={<Home />} />
-                                        <Route path="/qr-scanner" element={<QRCodeScanner />} />
-                                        <Route path="/upload" element={<UploadData />} />
-                                        <Route path="/import" element={<DataImport />} />
-                                        <Route path="/phone-numbers" element={<PhoneNumbers />} />
-                                        <Route path="/whatsapp-sender" element={<WhatsAppSender />} />
-                                    </Routes>
-                                </Layout>
-                            </WhatsAppSenderProvider>
-                        </ProtectedRoute>
-                    } />
+                    <Route element={<ProtectedRoute />}>
+                        <Route element={<Layout />}>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/scanner" element={<QRCodeScanner />} />
+                            <Route path="/upload" element={<UploadData />} />
+                            <Route path="/excel" element={<DataImport />} />
+                            <Route path="/numbers" element={<PhoneNumbers />} />
+                            <Route path="/whatsapp" element={<WhatsAppSender />} />
+                        </Route>
+                    </Route>
                 </Routes>
             </Router>
-            {/* ADD THE AUTO-UPDATE MODAL HERE */}
+        // Update Modal
             <AutoUpdateModal />
         </>
+
     );
 }
 
